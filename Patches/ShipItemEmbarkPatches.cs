@@ -72,8 +72,8 @@ namespace NANDFixes.Patches
                         return;
                     }
                 }
-
-                 __instance.InvokePrivateMethod("ExitBoat");
+                if (___currentBoatCollider != null) __instance.InvokePrivateMethod("ExitBoat");
+                 
 
             }
 

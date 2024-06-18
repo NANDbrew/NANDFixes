@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using SailwindModdingHelper;
 
-namespace NANDTweaks.Patches
+namespace NANDFixes.Patches
 {
     internal class BottleFillPatches
     {
