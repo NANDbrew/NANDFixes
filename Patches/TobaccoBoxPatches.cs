@@ -7,21 +7,17 @@ using System.Threading.Tasks;
 
 namespace NANDFixes.Patches
 {
+    [HarmonyPatch(typeof(ShipItemCrate), "OnLoad")]
     internal class TobaccoBoxPatches
     {
-        [HarmonyPatch(typeof(ShipItemCrate))]
-        private static class BarrelDrinkPatches
+        [HarmonyPostfix]
+        public static void Postfix(ShipItemCrate __instance, ref float ___heldRotationOffset)
         {
-            [HarmonyPatch("Awake")]
-            [HarmonyPostfix]
-            public static void ExtraLateUpdatePatch(ShipItemCrate __instance, ref float __heldRotationOffset)
+            if (__instance.GetPrefabIndex() >= 311 && __instance.GetPrefabIndex() <= 319)
             {
-                if (__instance.GetPrefabIndex() >= 311 && __instance.GetPrefabIndex() <= 319)
-                {
-                    __heldRotationOffset = 45f;
-                    __instance.inventoryRotation = 180f;
-                    __instance.inventoryRotationX = 270f;
-                }
+                ___heldRotationOffset = 45f;
+                __instance.inventoryRotation = 180f;
+                __instance.inventoryRotationX = 270f;
             }
         }
     }

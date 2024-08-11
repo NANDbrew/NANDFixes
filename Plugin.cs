@@ -12,7 +12,7 @@ namespace NANDFixes
     {
         public const string PLUGIN_ID = "com.nandbrew.nandfixes";
         public const string PLUGIN_NAME = "NAND Fixes";
-        public const string PLUGIN_VERSION = "1.0.1";
+        public const string PLUGIN_VERSION = "1.0.2";
 
         //--settings--
         internal static ConfigEntry<bool> hook_shelf;
@@ -26,7 +26,7 @@ namespace NANDFixes
 
             hook_shelf = Config.Bind("StickyFix", "Hook & Shelf fixer", true, new ConfigDescription("Keep lantern hooks and shelves stuck to boat. If they're causing issues, turn this off (does nothing if StickyFix is off)"));
             stickyFix = Config.Bind("StickyFix", "StickyFix", true, new ConfigDescription("Fix the infamous things-getting-stuck-to-other-boats bug"));
-            stickyFix = Config.Bind("misc.", "Bed camera adjustment", true, new ConfigDescription("Moves the sleep position in certain beds up a bit to fix the camera clipping through"));
+            bedCamAdjust = Config.Bind("misc.", "Bed camera adjustment", true, new ConfigDescription("Moves the sleep position in certain beds up a bit to fix the camera clipping through"));
         }
     }
 }

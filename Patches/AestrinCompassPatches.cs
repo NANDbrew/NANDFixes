@@ -7,12 +7,10 @@ using System.Threading.Tasks;
 
 namespace NANDFixes.Patches
 {
-    [HarmonyPatch(typeof(ShipItemCompass))]
+    [HarmonyPatch(typeof(ShipItemCompass), "OnLoad")]
     internal static class AestrinCompassPatches
     {
-        [HarmonyPatch("Awake")]
-        [HarmonyPostfix]
-        public static void AwakePatch(ShipItemCompass __instance)
+        public static void Postfix(ShipItemCompass __instance)
         {
             if (__instance.GetPrefabIndex() == 82)
             {
