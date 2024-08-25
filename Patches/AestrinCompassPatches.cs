@@ -12,7 +12,7 @@ namespace NANDFixes.Patches
     {
         public static void Postfix(ShipItemCompass __instance)
         {
-            if (__instance.GetPrefabIndex() == 82)
+            if (__instance.GetPrefabIndex() == 82 || __instance.GetPrefabIndex() == 80)
             {
                 __instance.inventoryRotation = 180f;
                 __instance.inventoryRotationX = 270f;
