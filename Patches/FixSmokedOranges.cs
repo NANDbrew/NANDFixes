@@ -16,7 +16,7 @@ namespace NANDFixes.Patches
             [HarmonyPrefix]
             public static void Prefix(ShipItemCrate __instance)
             {
-                if (__instance.name.Contains("oranges"))
+                if (__instance.GetPrefabIndex() == 213)
                 {
                     __instance.smokedFood = false;
                     //__instance.name = "Bruh";

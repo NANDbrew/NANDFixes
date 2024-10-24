@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using HarmonyLib;
-using SailwindModdingHelper;
 using UnityEngine;
 
 namespace NANDFixes.Patches
@@ -20,7 +19,7 @@ namespace NANDFixes.Patches
                 if (__instance.GetComponent<BoxCollider>().enabled) { Debug.Log("purchase collider disabled"); }
                 __instance.GetComponent<BoxCollider>().enabled = true;
                 __instance.transform.parent.parent.localPosition = new Vector3(-0.0820f, 2.961f, 2.01f);
-                Debug.Log("did second thing!");
+                //Debug.Log("did second thing!");
 
             }
 

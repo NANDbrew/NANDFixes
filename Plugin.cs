@@ -7,7 +7,7 @@ using System.Reflection;
 namespace NANDFixes
 {
     [BepInPlugin(PLUGIN_ID, PLUGIN_NAME, PLUGIN_VERSION)]
-    [BepInDependency("com.app24.sailwindmoddinghelper", "2.0.3")]
+    //[BepInDependency("com.app24.sailwindmoddinghelper", "2.0.3")]
     public class Plugin : BaseUnityPlugin
     {
         public const string PLUGIN_ID = "com.nandbrew.nandfixes";

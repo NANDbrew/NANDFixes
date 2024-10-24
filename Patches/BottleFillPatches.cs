@@ -20,7 +20,7 @@ namespace NANDFixes.Patches
                 if (__instance.health <= 0) { return false; }
                 if (heldItem is ShipItemBottle bottle) 
                 {
-                    if (bottle.health >= (float)bottle.GetPrivateField("capacity")) return false;
+                    if (bottle.health >= (float)Traverse.Create(bottle).Field("capacity").GetValue()) return false;
                 }
                 return true;
             }
