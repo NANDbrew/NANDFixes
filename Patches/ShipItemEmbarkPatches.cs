@@ -1,5 +1,5 @@
 ﻿using HarmonyLib;
-using SailwindModdingHelper;
+//using SailwindModdingHelper;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -65,50 +65,23 @@ namespace NANDFixes.Patches
             public static void EnterBoat(ShipItem __instance, Collider ___currentBoatCollider, Collider embarkCol)
             {
                 if (!Plugin.stickyFix.Value) return;
-                if (__instance.GetComponent<HangableItem>() is HangableItem item)
+                /*if (__instance.GetComponent<HangableItem>() is HangableItem item && item.IsHanging())
                 {
-                    if (item.IsHanging())
-                    {
-                        return;
-                    }
-                }
-                if (___currentBoatCollider != null) __instance.InvokePrivateMethod("ExitBoat");
-                 
+                    return;
+                }*/
+                if ((bool)___currentBoatCollider && ___currentBoatCollider != embarkCol) AccessTools.Method(__instance.GetType(), "ExitBoat").Invoke(__instance, null);
 
             }
 
             [HarmonyPatch("ExitBoat")]
             [HarmonyPrefix]
-            public static bool ExitBoat(ShipItem __instance, ItemRigidbody ___itemRigidbodyC, Collider ___currentBoatCollider)
+            public static void ExitBoat(ShipItem __instance, ItemRigidbody ___itemRigidbodyC, Collider ___currentBoatCollider)
             {
-                if (!Plugin.stickyFix.Value) return true;
+                if (!Plugin.stickyFix.Value) return;
 
-                if (Plugin.hook_shelf.Value)
-                {
-                    if (__instance.GetComponent<HangableItem>() is HangableItem item)
-                    {
-                        if (item.IsHanging())
-                        {
-                            return false;
-                        }
-
-                    }
-
-                    if (___itemRigidbodyC is ItemRigidbody body)
-                    {
-                        if (body.attached)
-                        {
-                            return false;
-
-                        }
-
-                    }
-                
-                }
                 List<Collider> colliders = __instance.GetComponent<Scripts.EmbarkTracker>().embarkColliders;
                 colliders.Remove(___currentBoatCollider);
 
-                return true;
             }
 
             [HarmonyPatch("InsertIntoCargoCarrier")]
