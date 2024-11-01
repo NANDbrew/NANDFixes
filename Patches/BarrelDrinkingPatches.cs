@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UnityEngine;
 
 namespace NANDFixes.Patches
 {
@@ -30,6 +31,19 @@ namespace NANDFixes.Patches
             public static bool OnAltHeldPatch(Good ___goodC)
             {
                 if (___goodC && ___goodC.GetMissionIndex() != -1) return false;
+                return true;
+
+            }
+
+            [HarmonyPatch("TryDrinkBottle")]
+            [HarmonyPrefix]
+            public static bool TryDrinkPatch(bool ___big)
+            {
+                if (___big && !GameInput.GetKey(InputName.Activate))
+                {
+                    Debug.Log("NANDFixes: prevented drinking");
+                    return false;
+                }
                 return true;
 
             }
