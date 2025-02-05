@@ -126,8 +126,10 @@
     <Compile Include="Patches\FixSmokedOranges.cs" />
     <Compile Include="Patches\KiciaAltarPatch.cs" />
     <Compile Include="Patches\PlayerEmbarkPatch.cs" />
+    <Compile Include="Patches\SailClothPatch.cs" />
     <Compile Include="Patches\SailPatches.cs" />
     <Compile Include="Patches\ShipItemEmbarkPatches.cs" />
+    <Compile Include="Patches\ShipItemVelPatch.cs" />
     <Compile Include="Patches\TobaccoBoxPatches.cs" />
     <Compile Include="Plugin.cs" />
     <Compile Include="Scripts\EmbarkTracker.cs" />
