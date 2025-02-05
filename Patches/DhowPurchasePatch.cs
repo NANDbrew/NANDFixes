@@ -8,25 +8,29 @@ using UnityEngine;
 
 namespace NANDFixes.Patches
 {
-    [HarmonyPatch(typeof(GPButtonPurchaseBoat), "Awake")]
-    internal class DhowPurchasePatch
+    [HarmonyPatch(typeof(PurchasableBoat), "Awake")]
+    internal class DhowPurchasePatch2
     {
         [HarmonyPostfix]
-        public static void Postfix(GPButtonPurchaseBoat __instance)
+        public static void Postfix(PurchasableBoat __instance)
         {
-            if (__instance.boat.name.StartsWith("BOAT dhow small"))
+            if (__instance.name.StartsWith("BOAT dhow small"))
             {
-                if (__instance.GetComponent<BoxCollider>().enabled) { Debug.Log("purchase collider disabled"); }
+                /*if (__instance.GetComponent<BoxCollider>().enabled) { Debug.Log("purchase collider disabled"); }
                 __instance.GetComponent<BoxCollider>().enabled = true;
-                __instance.transform.parent.parent.localPosition = new Vector3(-0.0820f, 2.961f, 2.01f);
-                //Debug.Log("did second thing!");
+                __instance.transform.parent.parent.localPosition = new Vector3(-0.0820f, 2.961f, 2.01f);*/
+                Debug.Log("trying to fix dhow");
 
+                BoatRefs refs = __instance.GetComponent<BoatRefs>();
+                refs.masts[6].GetComponent<CapsuleCollider>().radius = 0.2f;
+                refs.masts[7].GetComponent<CapsuleCollider>().radius = 0.2f;
+                //Debug.Log(refs ? "Refs!!" : "not refs!");
             }
-
         }
     }
+    
 /*    [HarmonyPatch(typeof(PurchasableBoat), "RegisterUI")]
-    internal class DhowPurchasePatch2
+    internal class DhowPurchasePatch
     {
         [HarmonyPostfix]
         public static void Postfix(GameObject ui, SaveableObject ___saveable)
@@ -40,4 +44,14 @@ namespace NANDFixes.Patches
             }
         }
     }*/
+    [HarmonyPatch(typeof(GPButtonPurchaseBoat), "Awake")]
+    internal class DhowPurchasePatch3
+    {
+        [HarmonyPostfix]
+        public static void Postfix(GPButtonPurchaseBoat __instance)
+        {
+            BoxCollider collider = __instance.GetComponent<BoxCollider>();
+            collider.size = new Vector3(collider.size.x, collider.size.y, 0.25f);
+        }
+    }
 }
