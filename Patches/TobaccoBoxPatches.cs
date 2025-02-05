@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace NANDFixes.Patches
 {
-    [HarmonyPatch(typeof(ShipItemCrate), "OnLoad")]
+    [HarmonyPatch(typeof(ShipItemCrate), "OnPickup")]
     internal class TobaccoBoxPatches
     {
         [HarmonyPostfix]
@@ -15,7 +15,7 @@ namespace NANDFixes.Patches
         {
             if (__instance.GetPrefabIndex() >= 311 && __instance.GetPrefabIndex() <= 319)
             {
-                ___heldRotationOffset = 45f;
+                ___heldRotationOffset = -45f;
                 __instance.inventoryRotation = 180f;
                 __instance.inventoryRotationX = 270f;
             }
