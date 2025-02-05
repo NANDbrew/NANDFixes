@@ -1,7 +1,9 @@
 ﻿using HarmonyLib;
 //using SailwindModdingHelper;
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,7 +13,6 @@ namespace NANDFixes.Patches
 {
     internal class ShipItemEmbarkPatches
     {
-
         [HarmonyPatch(typeof(ShipItem))]
         private static class EmbarkPatches
         {
@@ -62,15 +63,13 @@ namespace NANDFixes.Patches
 
             [HarmonyPatch("EnterBoat")]
             [HarmonyPrefix]
-            public static void EnterBoat(ShipItem __instance, Collider ___currentBoatCollider, Collider embarkCol)
+            public static bool EnterBoat(ShipItem __instance, Collider ___currentBoatCollider, Collider embarkCol)
             {
-                if (!Plugin.stickyFix.Value) return;
-                /*if (__instance.GetComponent<HangableItem>() is HangableItem item && item.IsHanging())
-                {
-                    return;
-                }*/
+                if (!Plugin.stickyFix.Value) return true;
+                if (!__instance.sold) return false;
+                if ((float)Traverse.Create(__instance.itemRigidbodyC).Field("dynamicColTimer").GetValue() <= 0) return false;
                 if ((bool)___currentBoatCollider && ___currentBoatCollider != embarkCol) AccessTools.Method(__instance.GetType(), "ExitBoat").Invoke(__instance, null);
-
+                return true;
             }
 
             [HarmonyPatch("ExitBoat")]
