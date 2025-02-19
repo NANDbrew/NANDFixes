@@ -1,4 +1,5 @@
-﻿using HarmonyLib;
+﻿using Crest;
+using HarmonyLib;
 //using SailwindModdingHelper;
 using System;
 using System.Collections;
@@ -50,25 +51,32 @@ namespace NANDFixes.Patches
             public static void OnTriggerExit(ShipItem __instance, Collider other, ref Collider ___currentlyStayedEmbarkCol)
             {
                 if (!Plugin.stickyFix.Value) return;
-
-                List<Collider> colliders = __instance.GetComponent<Scripts.EmbarkTracker>().embarkColliders;
-                colliders.Remove(other);
-
-                if (colliders.Count >= 1)
+                if (__instance.GetComponent<Scripts.EmbarkTracker>() is Scripts.EmbarkTracker tracker)
                 {
-                    ___currentlyStayedEmbarkCol = colliders[0];
+                    List<Collider> colliders = tracker.embarkColliders;
+                    colliders.Remove(other);
+
+                    if (colliders.Count >= 1)
+                    {
+                        ___currentlyStayedEmbarkCol = colliders[0];
+                    }
                 }
             }
 
 
             [HarmonyPatch("EnterBoat")]
             [HarmonyPrefix]
-            public static bool EnterBoat(ShipItem __instance, Collider ___currentBoatCollider, Collider embarkCol)
+            public static bool EnterBoat(ShipItem __instance, Collider ___currentBoatCollider, Collider embarkCol, Transform ___itemRigidbody)
             {
                 if (!Plugin.stickyFix.Value) return true;
                 if (!__instance.sold) return false;
+                if (___itemRigidbody.GetComponent<SimpleFloatingObject>().InWater) return false;
                 if ((float)Traverse.Create(__instance.itemRigidbodyC).Field("dynamicColTimer").GetValue() <= 0) return false;
-                if ((bool)___currentBoatCollider && ___currentBoatCollider != embarkCol) AccessTools.Method(__instance.GetType(), "ExitBoat").Invoke(__instance, null);
+
+                if ((bool)___currentBoatCollider && ___currentBoatCollider != embarkCol)
+                {
+                    AccessTools.Method(__instance.GetType(), "ExitBoat").Invoke(__instance, null);
+                }
                 return true;
             }
 
@@ -77,9 +85,12 @@ namespace NANDFixes.Patches
             public static void ExitBoat(ShipItem __instance, ItemRigidbody ___itemRigidbodyC, Collider ___currentBoatCollider)
             {
                 if (!Plugin.stickyFix.Value) return;
+                if (__instance.GetComponent<Scripts.EmbarkTracker>() is Scripts.EmbarkTracker tracker)
+                {
+                    List<Collider> colliders = tracker.embarkColliders;
+                    colliders.Remove(___currentBoatCollider);
 
-                List<Collider> colliders = __instance.GetComponent<Scripts.EmbarkTracker>().embarkColliders;
-                colliders.Remove(___currentBoatCollider);
+                }
 
             }
 
@@ -87,7 +98,10 @@ namespace NANDFixes.Patches
             [HarmonyPostfix]
             public static void CarrierPatch(ShipItem __instance)
             {
-                __instance.GetComponent<Scripts.EmbarkTracker>().embarkColliders.Clear();
+                if (__instance.GetComponent<Scripts.EmbarkTracker>() is Scripts.EmbarkTracker tracker)
+                {
+                    tracker.embarkColliders.Clear();
+                }
             }
         }
     }
