@@ -23,6 +23,7 @@ namespace NANDFixes
         internal static ConfigEntry<bool> clothFix;
         internal static ConfigEntry<bool> sailBlinkFix;
         internal static ConfigEntry<bool> barrelPatches;
+        internal static ConfigEntry<bool> mastColPatch;
 
         private void Awake()
         {
@@ -35,6 +36,7 @@ namespace NANDFixes
             clothFix = Config.Bind("misc.", "Sailcloth fix", true, new ConfigDescription("Fix squished sailcloth"));
             barrelPatches = Config.Bind("misc.", "Barrel patches", true, new ConfigDescription(""));
             sailBlinkFix = Config.Bind("misc.", "Sail blinking fix", true, new ConfigDescription("Fix Junk and junk square sails white blinky bug"));
+            mastColPatch = Config.Bind("misc.", "Mast item fix", true, new ConfigDescription("Fix the bug that makes items attached to masts un-targetable (requires restart)"));
 
         }
     }

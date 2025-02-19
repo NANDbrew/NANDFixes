@@ -14,6 +14,7 @@ namespace NANDFixes.Patches
         [HarmonyPostfix]
         public static void Postfix(PurchasableBoat __instance)
         {
+            if (Plugin.mastColPatch.Value) return;
             if (__instance.name.StartsWith("BOAT dhow small"))
             {
                 /*if (__instance.GetComponent<BoxCollider>().enabled) { Debug.Log("purchase collider disabled"); }
@@ -28,22 +29,7 @@ namespace NANDFixes.Patches
             }
         }
     }
-    
-/*    [HarmonyPatch(typeof(PurchasableBoat), "RegisterUI")]
-    internal class DhowPurchasePatch
-    {
-        [HarmonyPostfix]
-        public static void Postfix(GameObject ui, SaveableObject ___saveable)
-        {
-            Debug.Log("did first thing!");
 
-            if (___saveable.sceneIndex == 10)
-            {
-                Debug.Log("did second thing!");
-                ui.transform.localPosition = new Vector3(-0.0820f, 3, 2);
-            }
-        }
-    }*/
     [HarmonyPatch(typeof(GPButtonPurchaseBoat), "Awake")]
     internal class DhowPurchasePatch3
     {
