@@ -12,7 +12,7 @@ namespace NANDFixes
     {
         public const string PLUGIN_ID = "com.nandbrew.nandfixes";
         public const string PLUGIN_NAME = "NAND Fixes";
-        public const string PLUGIN_VERSION = "1.0.5";
+        public const string PLUGIN_VERSION = "1.0.6";
 
         //--settings--
         //internal static ConfigEntry<bool> hook_shelf;
@@ -20,7 +20,8 @@ namespace NANDFixes
         internal static ConfigEntry<bool> bedCamAdjust;
         internal static ConfigEntry<bool> playerEmbark;
         internal static ConfigEntry<bool> velocityFix;
-        //internal static ConfigEntry<bool> clothFix;
+        internal static ConfigEntry<bool> clothFix;
+        internal static ConfigEntry<bool> sailBlinkFix;
         internal static ConfigEntry<bool> barrelPatches;
 
         private void Awake()
@@ -31,8 +32,9 @@ namespace NANDFixes
             bedCamAdjust = Config.Bind("misc.", "Bed camera adjustment", true, new ConfigDescription("Moves the sleep position in certain beds up a bit to fix the camera clipping through"));
             playerEmbark = Config.Bind("Embark", "Boat-to-boat embark fix", true, new ConfigDescription("Fix for the \"falling through the deck when jumping between boats\" issue"));
             velocityFix = Config.Bind("Velocity fix", "Item velocity fix", true, new ConfigDescription("Fix thrown items bouncing back out of boats"));
-            //clothFix = Config.Bind("misc.", "Sailcloth fix", true, new ConfigDescription("Fix squished sailcloth"));
-            barrelPatches = Config.Bind("misc.", "Barrel patches", true, new ConfigDescription("Fix squished sailcloth"));
+            clothFix = Config.Bind("misc.", "Sailcloth fix", true, new ConfigDescription("Fix squished sailcloth"));
+            barrelPatches = Config.Bind("misc.", "Barrel patches", true, new ConfigDescription(""));
+            sailBlinkFix = Config.Bind("misc.", "Sail blinking fix", true, new ConfigDescription("Fix Junk and junk square sails white blinky bug"));
 
         }
     }
