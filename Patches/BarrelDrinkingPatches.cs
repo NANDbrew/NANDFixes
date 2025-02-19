@@ -17,10 +17,10 @@ namespace NANDFixes.Patches
             [HarmonyPostfix]
             public static void ExtraLateUpdatePatch(ref bool ___big, bool ___wasDrinking, bool ___drinking, float ___capacity)
             {
-                if (Plugin.barrelPatches.Value) return;
+                if (!Plugin.barrelPatches.Value) return;
                 if (!___drinking && !___wasDrinking)
                 {
-                    if (___capacity > 10f)
+                    if (___capacity > 30f)
                     {
                         ___big = true;
                     }
@@ -31,7 +31,7 @@ namespace NANDFixes.Patches
             [HarmonyPrefix]
             public static bool OnAltHeldPatch(Good ___goodC)
             {
-                if (Plugin.barrelPatches.Value) return true;
+                if (!Plugin.barrelPatches.Value) return true;
                 if (___goodC && ___goodC.GetMissionIndex() != -1) return false;
                 return true;
 
@@ -39,9 +39,9 @@ namespace NANDFixes.Patches
 
             [HarmonyPatch("TryDrinkBottle")]
             [HarmonyPrefix]
-            public static bool TryDrinkPatch(bool ___big)
+            public static bool TryDrinkPatch(bool ___big, float ___capacity)
             {
-                if (Plugin.barrelPatches.Value) return true;
+                if (!Plugin.barrelPatches.Value) return true;
                 if (___big && !GameInput.GetKey(InputName.Activate))
                 {
                     Debug.Log("NANDFixes: prevented drinking");
