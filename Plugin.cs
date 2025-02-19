@@ -29,14 +29,14 @@ namespace NANDFixes
         {
             Harmony.CreateAndPatchAll(Assembly.GetExecutingAssembly(), PLUGIN_ID);
 
-            stickyFix = Config.Bind("StickyFix", "StickyFix", true, new ConfigDescription("Fix the infamous things-getting-stuck-to-other-boats bug"));
-            bedCamAdjust = Config.Bind("misc.", "Bed camera adjustment", true, new ConfigDescription("Moves the sleep position in certain beds up a bit to fix the camera clipping through"));
-            playerEmbark = Config.Bind("Embark", "Boat-to-boat embark fix", true, new ConfigDescription("Fix for the \"falling through the deck when jumping between boats\" issue"));
-            velocityFix = Config.Bind("Velocity fix", "Item velocity fix", true, new ConfigDescription("Fix thrown items bouncing back out of boats"));
-            clothFix = Config.Bind("misc.", "Sailcloth fix", true, new ConfigDescription("Fix squished sailcloth"));
-            barrelPatches = Config.Bind("misc.", "Barrel patches", true, new ConfigDescription(""));
-            sailBlinkFix = Config.Bind("misc.", "Sail blinking fix", true, new ConfigDescription("Fix Junk and junk square sails white blinky bug"));
-            mastColPatch = Config.Bind("misc.", "Mast item fix", true, new ConfigDescription("Fix the bug that makes items attached to masts un-targetable (requires restart)"));
+            stickyFix = Config.Bind("", "StickyFix", true, new ConfigDescription("Fix the infamous things-getting-stuck-to-other-boats bug"));
+            bedCamAdjust = Config.Bind("", "Bed camera adjustment", true, new ConfigDescription("Moves the sleep position in certain beds up a bit to fix the camera clipping through"));
+            playerEmbark = Config.Bind("", "Boat-to-boat embark fix", true, new ConfigDescription("Fix for the \"falling through the deck when jumping between boats\" issue"));
+            velocityFix = Config.Bind("", "Item velocity fix", true, new ConfigDescription("Fix thrown items bouncing back out of boats or flying the wrong way"));
+            clothFix = Config.Bind("", "Sailcloth fix", true, new ConfigDescription("Fix squished sailcloth"));
+            barrelPatches = Config.Bind("", "Barrel patches", true, new ConfigDescription("Fix accidentally drining from barrels"));
+            sailBlinkFix = Config.Bind("", "Sail blinking fix", true, new ConfigDescription("Fix Junk and junk square sails white blinky bug"));
+            mastColPatch = Config.Bind("", "Mast item fix", true, new ConfigDescription("Fix the bug that makes items attached to masts un-targetable (requires restart)"));
 
         }
     }
