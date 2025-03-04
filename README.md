@@ -11,6 +11,7 @@
 - Fixes an issue with Kicia altar sound effects
 - Fixes falling through boats when moving from another boat
 - Prevents accidentally drinking from barrels
+- Fixes Kicia altar purring sound getting stuck on
 
 **Options**
 - StickyFix. Fixes the following bugs:
