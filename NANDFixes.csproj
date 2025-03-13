@@ -123,11 +123,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Patches\AestrinCompassPatches.cs" />
+    <Compile Include="Patches\ChipLogPatch.cs" />
+    <Compile Include="Patches\CompassPatches.cs" />
     <Compile Include="Patches\BarrelDrinkingPatches.cs" />
     <Compile Include="Patches\BedPatches.cs" />
     <Compile Include="Patches\BottleFillPatches.cs" />
     <Compile Include="Patches\BuyItemUIPatch.cs" />
+    <Compile Include="Patches\GRCFountainCollider.cs" />
     <Compile Include="Patches\MastColPatch.cs" />
     <Compile Include="Patches\DhowPurchasePatch.cs" />
     <Compile Include="Patches\FixSmokedOranges.cs" />
