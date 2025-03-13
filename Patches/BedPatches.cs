@@ -16,7 +16,7 @@ namespace NANDFixes.Patches
         public static void Postfix(GPButtonBed __instance) 
         {
             Vector3 pos = __instance.transform.GetChild(0).localPosition;
-            if (__instance.name == "hammock_001" && __instance.transform.parent.name == "junk small")
+            if (__instance.name == "hammock_001")
             {
                 pos.z += 0.3f;
             }
