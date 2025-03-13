@@ -59,7 +59,7 @@ namespace NANDFixes.Patches
 
             }
         }
-        [HarmonyPatch("Update")]
+        [HarmonyPatch("FixedUpdate")]
         [HarmonyPostfix]
         public static void UpdatePatch(PlayerEmbarkDisembarkTrigger __instance, ref bool ___exitBoatFlag, Collider ___currentlyStayedTrigger, ref Collider ___currentBoatCollider, ref float ___disembarkHeight, Transform ___playerObserver, bool __runOriginal)
         {
