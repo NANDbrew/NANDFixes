@@ -12,7 +12,7 @@ namespace NANDFixes
     {
         public const string PLUGIN_ID = "com.nandbrew.nandfixes";
         public const string PLUGIN_NAME = "NAND Fixes";
-        public const string PLUGIN_VERSION = "1.1.0";
+        public const string PLUGIN_VERSION = "1.1.1";
 
         //--settings--
         //internal static ConfigEntry<bool> hook_shelf;
@@ -25,7 +25,7 @@ namespace NANDFixes
         internal static ConfigEntry<bool> barrelPatches;
         internal static ConfigEntry<bool> mastColPatch;
         internal static ConfigEntry<bool> buyUIPatch;
-        //internal static ConfigEntry<bool> chipLogPatch;
+        internal static ConfigEntry<bool> albacoreFix;
 
         private void Awake()
         {
@@ -40,7 +40,7 @@ namespace NANDFixes
             sailBlinkFix = Config.Bind("", "Sail blinking fix", true, new ConfigDescription("Fix junk and junk square sails white blinky bug"));
             mastColPatch = Config.Bind("", "Mast item fix", true, new ConfigDescription("Fix the bug that makes items attached to masts un-targetable (requires restart)"));
             buyUIPatch = Config.Bind("", "Floating scroll fix", true, new ConfigDescription("Fix floating \"sell item\" menu"));
-            //chipLogPatch = Config.Bind("", "chip log fix", true, new ConfigDescription("Fix floating \"sell item\" menu"));
+            albacoreFix = Config.Bind("", "Rotten albacore fix", true, new ConfigDescription("Fix Gold Albacore starting out rotten and being unslicable"));
 
         }
     }

@@ -123,7 +123,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Patches\ChipLogPatch.cs" />
+    <Compile Include="Patches\AlbacorePatch.cs" />
     <Compile Include="Patches\CompassPatches.cs" />
     <Compile Include="Patches\BarrelDrinkingPatches.cs" />
     <Compile Include="Patches\BedPatches.cs" />
