@@ -12,11 +12,12 @@ namespace NANDFixes
     {
         public const string PLUGIN_ID = "com.nandbrew.nandfixes";
         public const string PLUGIN_NAME = "NAND Fixes";
-        public const string PLUGIN_VERSION = "1.1.1";
+        public const string PLUGIN_VERSION = "1.1.2";
 
         //--settings--
         //internal static ConfigEntry<bool> hook_shelf;
         internal static ConfigEntry<bool> stickyFix;
+        internal static ConfigEntry<bool> aggressiveSF;
         internal static ConfigEntry<bool> bedCamAdjust;
         internal static ConfigEntry<bool> playerEmbark;
         internal static ConfigEntry<bool> velocityFix;
@@ -32,6 +33,8 @@ namespace NANDFixes
             Harmony.CreateAndPatchAll(Assembly.GetExecutingAssembly(), PLUGIN_ID);
 
             stickyFix = Config.Bind("", "StickyFix", true, new ConfigDescription("Fix the infamous \"things getting stuck to other boats\" bug"));
+            aggressiveSF = Config.Bind("", "Aggressive StickyFix", false, new ConfigDescription("Should stickyFix prevent items that are stationary in water from embarking?\nOnly applies when StickyFix is enabled"));
+
             bedCamAdjust = Config.Bind("", "Bed camera adjustment", true, new ConfigDescription("Moves the sleep position in certain beds up a bit to fix the camera clipping through"));
             playerEmbark = Config.Bind("", "Boat-to-boat embark fix", true, new ConfigDescription("Fix for the \"falling through the deck when jumping between boats\" issue"));
             velocityFix = Config.Bind("", "Item velocity fix", true, new ConfigDescription("Fix thrown items bouncing back out of boats or flying the wrong way"));

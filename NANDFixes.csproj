@@ -132,7 +132,6 @@
     <Compile Include="Patches\GRCFountainCollider.cs" />
     <Compile Include="Patches\MastColPatch.cs" />
     <Compile Include="Patches\DhowPurchasePatch.cs" />
-    <Compile Include="Patches\FixSmokedOranges.cs" />
     <Compile Include="Patches\KiciaAltarPatch.cs" />
     <Compile Include="Patches\PlayerEmbarkPatch.cs" />
     <Compile Include="Patches\SailPatches.cs" />

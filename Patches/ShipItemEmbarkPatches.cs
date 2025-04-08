@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
+using NANDFixes.Scripts;
 
 namespace NANDFixes.Patches
 {
@@ -22,7 +23,7 @@ namespace NANDFixes.Patches
             [HarmonyPrefix]
             public static void Awake(ShipItem __instance)
             {
-                __instance.gameObject.AddComponent<Scripts.EmbarkTracker>();
+                __instance.gameObject.AddComponent<EmbarkTracker>();
             }
 
             [HarmonyPatch("OnTriggerEnter")]
@@ -31,12 +32,12 @@ namespace NANDFixes.Patches
             {
                 if (!Plugin.stickyFix.Value) return true;
 
-                if (other.CompareTag("EmbarkCol"))
+                if (other.CompareTag("EmbarkCol") && __instance.GetComponent<EmbarkTracker>() is EmbarkTracker tracker)
                 {
-                    List<Collider> colliders = __instance.GetComponent<Scripts.EmbarkTracker>().embarkColliders;
-                    if (!colliders.Contains(other))
+                    //List<Collider> colliders = __instance.GetComponent<EmbarkTracker>().embarkColliders;
+                    if (!tracker.embarkColliders.Contains(other))
                     {
-                        colliders.Add(other);
+                        tracker.embarkColliders.Add(other);
                     }
                     if (___currentBoatCollider != null)
                     {
@@ -51,7 +52,7 @@ namespace NANDFixes.Patches
             public static void OnTriggerExit(ShipItem __instance, Collider other, ref Collider ___currentlyStayedEmbarkCol)
             {
                 if (!Plugin.stickyFix.Value) return;
-                if (__instance.GetComponent<Scripts.EmbarkTracker>() is Scripts.EmbarkTracker tracker)
+                if (other.CompareTag("EmbarkCol") && __instance.GetComponent<EmbarkTracker>() is EmbarkTracker tracker)
                 {
                     List<Collider> colliders = tracker.embarkColliders;
                     colliders.Remove(other);
@@ -70,9 +71,20 @@ namespace NANDFixes.Patches
             {
                 if (!Plugin.stickyFix.Value) return true;
                 if (!__instance.sold) return false;
-                if (___itemRigidbody.GetComponent<SimpleFloatingObject>().InWater) return false;
-                if ((float)Traverse.Create(__instance.itemRigidbodyC).Field("dynamicColTimer").GetValue() <= 0) return false;
-
+                if (Plugin.aggressiveSF.Value && ___itemRigidbody.GetComponent<SimpleFloatingObject>().InWater) 
+                {
+#if DEBUG
+                    Debug.Log("nandfixes: item " + __instance.name + " was in water. prevented embark"); 
+#endif
+                    return false; 
+                }
+                if (Plugin.aggressiveSF.Value && (float)Traverse.Create(__instance.itemRigidbodyC).Field("dynamicColTimer").GetValue() <= 0)
+                {
+#if DEBUG
+                    Debug.Log("nandfixes: item " + __instance.name + " was settled. prevented embark");
+#endif
+                    return false;
+                }
                 if ((bool)___currentBoatCollider && ___currentBoatCollider != embarkCol)
                 {
                     AccessTools.Method(__instance.GetType(), "ExitBoat").Invoke(__instance, null);
@@ -85,10 +97,9 @@ namespace NANDFixes.Patches
             public static void ExitBoat(ShipItem __instance, ItemRigidbody ___itemRigidbodyC, Collider ___currentBoatCollider)
             {
                 if (!Plugin.stickyFix.Value) return;
-                if (__instance.GetComponent<Scripts.EmbarkTracker>() is Scripts.EmbarkTracker tracker)
+                if (__instance.GetComponent<EmbarkTracker>() is EmbarkTracker tracker)
                 {
-                    List<Collider> colliders = tracker.embarkColliders;
-                    colliders.Remove(___currentBoatCollider);
+                    tracker.embarkColliders.Remove(___currentBoatCollider);
 
                 }
 
@@ -98,7 +109,7 @@ namespace NANDFixes.Patches
             [HarmonyPostfix]
             public static void CarrierPatch(ShipItem __instance)
             {
-                if (__instance.GetComponent<Scripts.EmbarkTracker>() is Scripts.EmbarkTracker tracker)
+                if (__instance.GetComponent<EmbarkTracker>() is EmbarkTracker tracker)
                 {
                     tracker.embarkColliders.Clear();
                 }
