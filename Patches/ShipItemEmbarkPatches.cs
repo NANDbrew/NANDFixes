@@ -71,19 +71,15 @@ namespace NANDFixes.Patches
             {
                 if (!Plugin.stickyFix.Value) return true;
                 if (!__instance.sold) return false;
-                if (Plugin.aggressiveSF.Value && ___itemRigidbody.GetComponent<SimpleFloatingObject>().InWater) 
+                if (Plugin.aggressiveSF.Value)
                 {
-#if DEBUG
-                    Debug.Log("nandfixes: item " + __instance.name + " was in water. prevented embark"); 
-#endif
-                    return false; 
-                }
-                if (Plugin.aggressiveSF.Value && (float)Traverse.Create(__instance.itemRigidbodyC).Field("dynamicColTimer").GetValue() <= 0)
-                {
+                    if (___itemRigidbody.GetComponent<SimpleFloatingObject>().InWater || (float)Traverse.Create(__instance.itemRigidbodyC).Field("dynamicColTimer").GetValue() <= 0)
+                    {
 #if DEBUG
                     Debug.Log("nandfixes: item " + __instance.name + " was settled. prevented embark");
 #endif
-                    return false;
+                        return false;
+                    }
                 }
                 if ((bool)___currentBoatCollider && ___currentBoatCollider != embarkCol)
                 {
