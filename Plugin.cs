@@ -1,6 +1,7 @@
 ﻿using BepInEx;
 using BepInEx.Configuration;
 using HarmonyLib;
+using NANDFixes.Scripts;
 using System;
 using System.Reflection;
 
@@ -27,14 +28,20 @@ namespace NANDFixes
         internal static ConfigEntry<bool> mastColPatch;
         internal static ConfigEntry<bool> buyUIPatch;
         internal static ConfigEntry<bool> albacoreFix;
+        internal static ConfigEntry<bool> spinFix;
+
+        public static Plugin instance;
 
         private void Awake()
         {
             Harmony.CreateAndPatchAll(Assembly.GetExecutingAssembly(), PLUGIN_ID);
+            instance = this;
+            AssetTools.LoadAssetBundles();
 
             stickyFix = Config.Bind("", "StickyFix", true, new ConfigDescription("Fix the infamous \"things getting stuck to other boats\" bug"));
             aggressiveSF = Config.Bind("", "Aggressive StickyFix", false, new ConfigDescription("Should stickyFix prevent items that are stationary in water from embarking?\nOnly applies when StickyFix is enabled"));
-
+            
+            spinFix = Config.Bind("", "Spin Fix", true, new ConfigDescription("keep boats from spinning while the player is in a shipyard"));
             bedCamAdjust = Config.Bind("", "Bed camera adjustment", true, new ConfigDescription("Moves the sleep position in certain beds up a bit to fix the camera clipping through"));
             playerEmbark = Config.Bind("", "Boat-to-boat embark fix", true, new ConfigDescription("Fix for the \"falling through the deck when jumping between boats\" issue"));
             velocityFix = Config.Bind("", "Item velocity fix", true, new ConfigDescription("Fix thrown items bouncing back out of boats or flying the wrong way"));

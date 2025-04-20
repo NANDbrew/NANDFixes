@@ -108,6 +108,10 @@
     <Reference Include="UnityEngine, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>packages\UnityEngine.Core.2018.1.0\lib\net35\UnityEngine.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEngine.AssetBundleModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Sailwind\Sailwind_Data\Managed\UnityEngine.AssetBundleModule.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.AudioModule">
       <HintPath>..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Sailwind\Sailwind_Data\Managed\UnityEngine.AudioModule.dll</HintPath>
     </Reference>
@@ -124,6 +128,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Patches\AlbacorePatch.cs" />
+    <Compile Include="Patches\CleaningPatch.cs" />
+    <Compile Include="Patches\ClippingMaskPatch.cs" />
     <Compile Include="Patches\CompassPatches.cs" />
     <Compile Include="Patches\BarrelDrinkingPatches.cs" />
     <Compile Include="Patches\BedPatches.cs" />
@@ -134,11 +140,14 @@
     <Compile Include="Patches\DhowPurchasePatch.cs" />
     <Compile Include="Patches\KiciaAltarPatch.cs" />
     <Compile Include="Patches\PlayerEmbarkPatch.cs" />
+    <Compile Include="Patches\PortMapPatch.cs" />
     <Compile Include="Patches\SailPatches.cs" />
     <Compile Include="Patches\ShipItemEmbarkPatches.cs" />
     <Compile Include="Patches\ShipItemVelPatch.cs" />
+    <Compile Include="Patches\SpinFix.cs" />
     <Compile Include="Patches\TobaccoBoxPatches.cs" />
     <Compile Include="Plugin.cs" />
+    <Compile Include="Scripts\AssetTools.cs" />
     <Compile Include="Scripts\EmbarkTracker.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
