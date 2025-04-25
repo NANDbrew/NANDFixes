@@ -39,7 +39,7 @@ namespace NANDFixes.Patches
                     {
                         tracker.embarkColliders.Add(other);
                     }
-                    if (___currentBoatCollider != null)
+                    if (___currentBoatCollider && ___currentBoatCollider != other)
                     {
                         return false;
                     }
@@ -81,7 +81,7 @@ namespace NANDFixes.Patches
                         return false;
                     }
                 }
-                if ((bool)___currentBoatCollider && ___currentBoatCollider != embarkCol)
+                if (___currentBoatCollider && ___currentBoatCollider != embarkCol)
                 {
                     AccessTools.Method(__instance.GetType(), "ExitBoat").Invoke(__instance, null);
                 }
