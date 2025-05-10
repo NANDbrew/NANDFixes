@@ -13,7 +13,7 @@ namespace NANDFixes
     {
         public const string PLUGIN_ID = "com.nandbrew.nandfixes";
         public const string PLUGIN_NAME = "NAND Fixes";
-        public const string PLUGIN_VERSION = "1.2.0";
+        public const string PLUGIN_VERSION = "1.2.1";
 
         //--settings--
         //internal static ConfigEntry<bool> hook_shelf;
@@ -29,6 +29,8 @@ namespace NANDFixes
         internal static ConfigEntry<bool> buyUIPatch;
         internal static ConfigEntry<bool> albacoreFix;
         internal static ConfigEntry<bool> spinFix;
+        internal static ConfigEntry<bool> cleaningFix;
+        internal static int threshold = 1000;
 
         public static Plugin instance;
 
@@ -39,9 +41,10 @@ namespace NANDFixes
             AssetTools.LoadAssetBundles();
 
             stickyFix = Config.Bind("", "StickyFix", true, new ConfigDescription("Fix the infamous \"things getting stuck to other boats\" bug"));
-            aggressiveSF = Config.Bind("", "Aggressive StickyFix", false, new ConfigDescription("Should stickyFix prevent items that are stationary in water from embarking?\nOnly applies when StickyFix is enabled"));
-            
+            aggressiveSF = Config.Bind("", "Aggressive StickyFix", false, new ConfigDescription("Should stickyFix prevent items that are stationary or in water from embarking?\nOnly applies when StickyFix is enabled"));
+
             spinFix = Config.Bind("", "Spin Fix", true, new ConfigDescription("keep boats from spinning while the player is in a shipyard"));
+            spinFix = Config.Bind("", "Cleaning Fix", true, new ConfigDescription("workaround for the Jong's shipyard crash"));
             bedCamAdjust = Config.Bind("", "Bed camera adjustment", true, new ConfigDescription("Moves the sleep position in certain beds up a bit to fix the camera clipping through"));
             playerEmbark = Config.Bind("", "Boat-to-boat embark fix", true, new ConfigDescription("Fix for the \"falling through the deck when jumping between boats\" issue"));
             velocityFix = Config.Bind("", "Item velocity fix", true, new ConfigDescription("Fix thrown items bouncing back out of boats or flying the wrong way"));

@@ -135,6 +135,7 @@
     <Compile Include="Patches\BedPatches.cs" />
     <Compile Include="Patches\BottleFillPatches.cs" />
     <Compile Include="Patches\BuyItemUIPatch.cs" />
+    <Compile Include="Patches\CrateUIPatch.cs" />
     <Compile Include="Patches\GRCFountainCollider.cs" />
     <Compile Include="Patches\MastColPatch.cs" />
     <Compile Include="Patches\DhowPurchasePatch.cs" />
