@@ -63,8 +63,20 @@ namespace NANDFixes.Patches
                     }
                 }
             }
+            [HarmonyPatch("ExtraFixedUpdate")]
+            [HarmonyPostfix]
+            public static void ExtraFixedUpdate(ShipItem __instance, Transform ___currentActualBoat, Collider ___currentlyStayedEmbarkCol, int ___frameCounter)
+            {
+                if (!Plugin.stickyFix.Value) return;
+                if (!Plugin.aggressiveSF.Value) return;
 
+                if (___currentActualBoat && !___currentlyStayedEmbarkCol && ___frameCounter > Plugin.threshold && __instance.transform.localPosition.sqrMagnitude > 2500f)
+                {
+                    AccessTools.Method(__instance.GetType(), "ExitBoat").Invoke(__instance, null);
+                    Debug.LogWarning("nandFixes: object exiting boat due to frame count");
+                }
 
+            }
             [HarmonyPatch("EnterBoat")]
             [HarmonyPrefix]
             public static bool EnterBoat(ShipItem __instance, Collider ___currentBoatCollider, Collider embarkCol, Transform ___itemRigidbody)
@@ -100,7 +112,6 @@ namespace NANDFixes.Patches
                 }
 
             }
-
             [HarmonyPatch("InsertIntoCargoCarrier")]
             [HarmonyPostfix]
             public static void CarrierPatch(ShipItem __instance)
