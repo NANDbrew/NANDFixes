@@ -30,6 +30,7 @@ namespace NANDFixes
         internal static ConfigEntry<bool> albacoreFix;
         internal static ConfigEntry<bool> spinFix;
         internal static ConfigEntry<bool> cleaningFix;
+        internal static ConfigEntry<bool> craneFix;
         internal static int threshold = 1000;
 
         public static Plugin instance;
@@ -43,8 +44,9 @@ namespace NANDFixes
             stickyFix = Config.Bind("", "StickyFix", true, new ConfigDescription("Fix the infamous \"things getting stuck to other boats\" bug"));
             aggressiveSF = Config.Bind("", "Aggressive StickyFix", false, new ConfigDescription("Should stickyFix prevent items that are stationary or in water from embarking?\nOnly applies when StickyFix is enabled"));
 
+            craneFix = Config.Bind("", "Crane Fix", true, new ConfigDescription("fix gold rock city's shipyard crane colliders"));
             spinFix = Config.Bind("", "Spin Fix", true, new ConfigDescription("keep boats from spinning while the player is in a shipyard"));
-            spinFix = Config.Bind("", "Cleaning Fix", true, new ConfigDescription("workaround for the Jong's shipyard crash"));
+            cleaningFix = Config.Bind("", "Cleaning Fix", true, new ConfigDescription("workaround for the Jong's shipyard crash"));
             bedCamAdjust = Config.Bind("", "Bed camera adjustment", true, new ConfigDescription("Moves the sleep position in certain beds up a bit to fix the camera clipping through"));
             playerEmbark = Config.Bind("", "Boat-to-boat embark fix", true, new ConfigDescription("Fix for the \"falling through the deck when jumping between boats\" issue"));
             velocityFix = Config.Bind("", "Item velocity fix", true, new ConfigDescription("Fix thrown items bouncing back out of boats or flying the wrong way"));

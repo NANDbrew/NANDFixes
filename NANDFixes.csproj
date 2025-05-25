@@ -145,6 +145,7 @@
     <Compile Include="Patches\SailPatches.cs" />
     <Compile Include="Patches\ShipItemEmbarkPatches.cs" />
     <Compile Include="Patches\ShipItemVelPatch.cs" />
+    <Compile Include="Patches\CraneFix.cs" />
     <Compile Include="Patches\SpinFix.cs" />
     <Compile Include="Patches\TobaccoBoxPatches.cs" />
     <Compile Include="Plugin.cs" />
