@@ -31,6 +31,7 @@ namespace NANDFixes
         internal static ConfigEntry<bool> spinFix;
         internal static ConfigEntry<bool> cleaningFix;
         internal static ConfigEntry<bool> craneFix;
+        internal static ConfigEntry<bool> boatColFix;
         internal static int threshold = 1000;
 
         public static Plugin instance;
@@ -44,6 +45,7 @@ namespace NANDFixes
             stickyFix = Config.Bind("", "StickyFix", true, new ConfigDescription("Fix the infamous \"things getting stuck to other boats\" bug"));
             aggressiveSF = Config.Bind("", "Aggressive StickyFix", false, new ConfigDescription("Should stickyFix prevent items that are stationary or in water from embarking?\nOnly applies when StickyFix is enabled"));
 
+            boatColFix = Config.Bind("", "Boat Collider Fix", true, new ConfigDescription("makes boats less likely to phase through things"));
             craneFix = Config.Bind("", "Crane Fix", true, new ConfigDescription("fix gold rock city's shipyard crane colliders"));
             spinFix = Config.Bind("", "Spin Fix", true, new ConfigDescription("keep boats from spinning while the player is in a shipyard"));
             cleaningFix = Config.Bind("", "Cleaning Fix", true, new ConfigDescription("workaround for the Jong's shipyard crash"));
