@@ -27,4 +27,17 @@ namespace NANDFixes.Patches
             __instance.transform.GetChild(0).localPosition = pos;
         }
     }
+
+    [HarmonyPatch(typeof(ShipItemBed), "OnAltActivate")]
+    internal static class BedPathes2
+    {
+        public static bool Prefix(ShipItemBed __instance)
+        {
+            if (__instance.sold && __instance.held)
+            {
+                return false;
+            }
+            return true;
+        }
+    }
 }
