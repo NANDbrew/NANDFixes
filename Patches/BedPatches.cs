@@ -15,6 +15,7 @@ namespace NANDFixes.Patches
         [HarmonyPostfix]
         public static void Postfix(GPButtonBed __instance) 
         {
+            if (!Plugin.bedCamAdjust.Value) return;
             Vector3 pos = __instance.transform.GetChild(0).localPosition;
             if (__instance.name == "hammock_001")
             {
@@ -33,6 +34,7 @@ namespace NANDFixes.Patches
     {
         public static bool Prefix(ShipItemBed __instance)
         {
+            if (!Plugin.flyingCarpetFix.Value) return true;
             if (__instance.sold && __instance.held)
             {
                 return false;
