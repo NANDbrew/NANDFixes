@@ -100,6 +100,7 @@ namespace NANDFixes.Patches
                 return true;
             }
 
+
             [HarmonyPatch("ExitBoat")]
             [HarmonyPrefix]
             public static void ExitBoat(ShipItem __instance, ItemRigidbody ___itemRigidbodyC, Collider ___currentBoatCollider)
@@ -120,6 +121,17 @@ namespace NANDFixes.Patches
                 {
                     tracker.embarkColliders.Clear();
                 }
+            }
+        }
+        [HarmonyPatch(typeof(ShipItemHangable))]
+        public static class HangableFix
+        {
+            [HarmonyPatch("OnPickup")]
+            [HarmonyPostfix]
+            public static void PickupPatch(ShipItemHangable __instance)
+            {
+                if (!Plugin.stickyFix.Value) return;
+                __instance.ToggleDisallowDisembarking(false);
             }
         }
     }
