@@ -33,6 +33,7 @@ namespace NANDFixes
         internal static ConfigEntry<bool> craneFix;
         internal static ConfigEntry<bool> boatColFix;
         internal static ConfigEntry<bool> flyingCarpetFix;
+        internal static ConfigEntry<bool> invRotationFix;
         internal static int threshold = 1000;
 
         public static Plugin instance;
@@ -46,6 +47,7 @@ namespace NANDFixes
             stickyFix = Config.Bind("", "StickyFix", true, new ConfigDescription("Fix the infamous \"things getting stuck to other boats\" bug"));
             aggressiveSF = Config.Bind("", "Aggressive StickyFix", false, new ConfigDescription("Should stickyFix prevent items that are stationary or in water from embarking?\nOnly applies when StickyFix is enabled"));
 
+            invRotationFix = Config.Bind("", "Inventory rotation adjustments", true, new ConfigDescription("fixes small boxes, compasses and totems facing the wrong way in inventory"));
             flyingCarpetFix = Config.Bind("", "Flying Carpet Fix", true, new ConfigDescription("prevents sleeping in a bed you're holding"));
             boatColFix = Config.Bind("", "Boat Collider Fix", true, new ConfigDescription("makes boats less likely to phase through things"));
             craneFix = Config.Bind("", "Crane Fix", true, new ConfigDescription("fix gold rock city's shipyard crane colliders"));

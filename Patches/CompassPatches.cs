@@ -14,6 +14,7 @@ namespace NANDFixes.Patches
         [HarmonyPostfix]
         public static void LoadPatch(ShipItemCompass __instance)
         {
+            if (!Plugin.invRotationFix.Value) return;
             if (__instance.GetPrefabIndex() == 82 || __instance.GetPrefabIndex() == 80)
             {
                 __instance.inventoryRotation = 180f;
@@ -28,6 +29,7 @@ namespace NANDFixes.Patches
         [HarmonyPostfix]
         public static void LoadPatch(ShipItem __instance)
         {
+            if (!Plugin.invRotationFix.Value) return;
             if (__instance is ShipItemFishingHook)
             {
                 __instance.inventoryRotation = 90f;

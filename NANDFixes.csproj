@@ -131,6 +131,7 @@
     <Compile Include="Patches\BoatColPatch.cs" />
     <Compile Include="Patches\CleaningPatch.cs" />
     <Compile Include="Patches\ClippingMaskPatch.cs" />
+    <Compile Include="Patches\TotemPatches.cs" />
     <Compile Include="Patches\CompassPatches.cs" />
     <Compile Include="Patches\BarrelDrinkingPatches.cs" />
     <Compile Include="Patches\BedPatches.cs" />
@@ -150,6 +151,7 @@
     <Compile Include="Patches\SpinFix.cs" />
     <Compile Include="Patches\TobaccoBoxPatches.cs" />
     <Compile Include="Plugin.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Scripts\AssetTools.cs" />
     <Compile Include="Scripts\EmbarkTracker.cs" />
   </ItemGroup>

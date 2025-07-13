@@ -13,6 +13,7 @@ namespace NANDFixes.Patches
         [HarmonyPostfix]
         public static void Postfix(ShipItemCrate __instance, ref float ___heldRotationOffset)
         {
+            if (!Plugin.invRotationFix.Value) return;
             if (__instance.GetPrefabIndex() >= 311 && __instance.GetPrefabIndex() <= 319)
             {
                 ___heldRotationOffset = -45f;
