@@ -15,11 +15,9 @@ namespace NANDFixes.Patches
         public static void LoadPatch(ShipItemCompass __instance)
         {
             if (!Plugin.invRotationFix.Value) return;
-            if (__instance.GetPrefabIndex() == 82 || __instance.GetPrefabIndex() == 80)
-            {
-                __instance.inventoryRotation = 180f;
-                __instance.inventoryRotationX = 270f;
-            }
+            __instance.inventoryRotation = 180f;
+            __instance.inventoryRotationX = 270f;
+
         }
     }
     [HarmonyPatch(typeof(ShipItem))]
