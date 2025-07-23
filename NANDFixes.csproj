@@ -167,7 +167,7 @@
   </Target>
   <Import Project="..\NANDTweaks\packages\BepInEx.Core.5.4.11\build\BepInEx.Core.targets" Condition="Exists('..\NANDTweaks\packages\BepInEx.Core.5.4.11\build\BepInEx.Core.targets')" />
   <PropertyGroup>
-    <PostBuildEvent>mkdir "C:\Program Files (x86)\Steam\steamapps\common\Sailwind\BepInEx\plugins\NANDTweaks"
-xcopy /y "NANDFixes.dll" "C:\Program Files (x86)\Steam\steamapps\common\Sailwind\BepInEx\plugins\NANDTweaks"</PostBuildEvent>
+    <PostBuildEvent>mkdir "C:\Program Files (x86)\Steam\steamapps\common\Sailwind\BepInEx\plugins\NANDFixes"
+xcopy /y "NANDFixes.dll" "C:\Program Files (x86)\Steam\steamapps\common\Sailwind\BepInEx\plugins\NANDFixes"</PostBuildEvent>
   </PropertyGroup>
 </Project>
