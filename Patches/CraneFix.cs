@@ -19,6 +19,7 @@ namespace NANDFixes.Patches
             {
                 __instance.transform.Find("crane (1)").GetComponent<MeshCollider>().convex = false;
                 __instance.transform.Find("crane (2)").GetComponent<MeshCollider>().convex = false;
+                __instance.transform.Find("crane (3)").GetComponent<MeshCollider>().convex = false;
             }
         }
 
