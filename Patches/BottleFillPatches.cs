@@ -1,4 +1,4 @@
-﻿using HarmonyLib;
+﻿/*using HarmonyLib;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +16,7 @@ namespace NANDFixes.Patches
             [HarmonyPrefix]
             public static bool ItemClickPatch(ShipItemBottle __instance, PickupableItem heldItem)
             {
+                if (!Plugin.barrelPatches.Value) return true;
                 if (__instance.health <= 0) { return false; }
                 if (heldItem is ShipItemBottle bottle) 
                 {
@@ -26,3 +27,4 @@ namespace NANDFixes.Patches
         }
     }
 }
+*/

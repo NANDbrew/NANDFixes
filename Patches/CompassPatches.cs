@@ -33,6 +33,10 @@ namespace NANDFixes.Patches
                 __instance.inventoryRotation = 90f;
                 __instance.inventoryRotationX = 45f;
             }
+            else if (__instance.GetPrefabIndex() == 79)
+            {
+                __instance.inventoryRotation = 180f;
+            }
         }
     }
 }

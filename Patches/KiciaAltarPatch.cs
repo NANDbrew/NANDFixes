@@ -1,24 +1,23 @@
 ﻿using HarmonyLib;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 
 namespace NANDFixes.Patches
 {
+    [HarmonyPatch(typeof(KiciaAltar), "Update")]
     internal class KiciaAltarPatch
     {
-        [HarmonyPatch(typeof(KiciaAltar))]
-        private static class AltarPatch
+        static bool hasRun;
+
+        [HarmonyPostfix]
+        public static void UpdatePatch(ParticleSystem ___sacParticles)
         {
-            [HarmonyPatch("Update")]
-            [HarmonyPostfix]
-            public static void UpdatePatch(ParticleSystem ___sacParticles)
+            if (!hasRun)
             {
                 ___sacParticles.GetComponent<AudioSource>().enabled = false;
+                hasRun = true;
             }
         }
+
     }
 }

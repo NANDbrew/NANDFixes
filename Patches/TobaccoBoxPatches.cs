@@ -22,4 +22,22 @@ namespace NANDFixes.Patches
             }
         }
     }
+    [HarmonyPatch(typeof(ShipItem), "OnLoad")]
+    internal class CoffeeBoxPatches
+    {
+        [HarmonyPostfix]
+        public static void Postfix(ShipItem __instance, ref float ___heldRotationOffset)
+        {
+            if (!Plugin.invRotationFix.Value) return;
+            if (__instance is ShipItemTea)
+            {
+                if ((__instance.GetPrefabIndex() >= 387 && __instance.GetPrefabIndex() <= 389) || __instance.GetPrefabIndex() == 373)
+                {
+                    ___heldRotationOffset = -45f;
+                    __instance.inventoryRotation = 180f;
+                    __instance.inventoryRotationX = 270f;
+                }
+            }
+        }
+    }
 }
