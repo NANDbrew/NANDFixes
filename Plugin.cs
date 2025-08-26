@@ -35,6 +35,7 @@ namespace NANDFixes
         internal static ConfigEntry<bool> flyingCarpetFix;
         internal static ConfigEntry<bool> invRotationFix;
         internal static ConfigEntry<bool> mushroomFix;
+        internal static ConfigEntry<bool> mapFix;
         internal static int threshold = 1000;
 
         public static Plugin instance;
@@ -48,6 +49,7 @@ namespace NANDFixes
             stickyFix = Config.Bind("", "StickyFix", true, new ConfigDescription("Fix the infamous \"things getting stuck to other boats\" bug"));
             aggressiveSF = Config.Bind("", "Aggressive StickyFix", false, new ConfigDescription("Should stickyFix prevent items that are stationary or in water from embarking?\nOnly applies when StickyFix is enabled"));
 
+            mapFix = Config.Bind("", "Map Fix", true, new ConfigDescription("fixes rolled maps unrolling themselves on game load"));
             mushroomFix = Config.Bind("", "Mushroom Fix", true, new ConfigDescription("fixes cave mushrooms and field mushrooms falling through the floor"));
             invRotationFix = Config.Bind("", "Inventory rotation adjustments", true, new ConfigDescription("fixes small boxes, compasses and totems facing the wrong way in inventory"));
             flyingCarpetFix = Config.Bind("", "Flying Carpet Fix", true, new ConfigDescription("prevents sleeping in a bed you're holding"));

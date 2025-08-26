@@ -131,7 +131,9 @@
     <Compile Include="Patches\BoatColPatch.cs" />
     <Compile Include="Patches\CleaningPatch.cs" />
     <Compile Include="Patches\ClippingMaskPatch.cs" />
+    <Compile Include="Patches\MapPatch.cs" />
     <Compile Include="Patches\MushroomFix.cs" />
+    <Compile Include="Patches\MastButtonFix.cs" />
     <Compile Include="Patches\TotemPatches.cs" />
     <Compile Include="Patches\CompassPatches.cs" />
     <Compile Include="Patches\BarrelDrinkingPatches.cs" />
