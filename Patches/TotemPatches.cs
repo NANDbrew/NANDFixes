@@ -7,7 +7,8 @@ using System.Threading.Tasks;
 
 namespace NANDFixes.Patches
 {
-    [HarmonyPatch(typeof(ShipItemTotem))]
+
+/*    [HarmonyPatch(typeof(ShipItemTotem))]
     internal static class TotemPatches
     {
         [HarmonyPatch("OnLoad")]
@@ -17,5 +18,5 @@ namespace NANDFixes.Patches
             if (!Plugin.invRotationFix.Value) return;
             __instance.inventoryRotation = 180f;
         }
-    }
+    }*/
 }

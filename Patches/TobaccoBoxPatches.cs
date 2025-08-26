@@ -22,7 +22,7 @@ namespace NANDFixes.Patches
             }
         }
     }
-    [HarmonyPatch(typeof(ShipItem), "OnLoad")]
+/*    [HarmonyPatch(typeof(ShipItem), "OnLoad")]
     internal class CoffeeBoxPatches
     {
         [HarmonyPostfix]
@@ -39,5 +39,5 @@ namespace NANDFixes.Patches
                 }
             }
         }
-    }
+    }*/
 }
