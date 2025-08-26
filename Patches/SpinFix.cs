@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using HarmonyLib;
+﻿using HarmonyLib;
 using UnityEngine;
-using Crest;
 
 namespace NANDFixes.Patches
 {
