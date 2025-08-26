@@ -69,7 +69,7 @@ namespace NANDFixes.Patches
             {
                 if (!Plugin.stickyFix.Value) return;
                 if (!Plugin.aggressiveSF.Value) return;
-
+                if (GameState.currentlyLoading || GameState.justStarted) return;
                 if (___currentActualBoat && !___currentlyStayedEmbarkCol && ___frameCounter > Plugin.threshold && __instance.transform.localPosition.sqrMagnitude > 2500f)
                 {
                     AccessTools.Method(__instance.GetType(), "ExitBoat").Invoke(__instance, null);
@@ -82,7 +82,9 @@ namespace NANDFixes.Patches
             public static bool EnterBoat(ShipItem __instance, Collider ___currentBoatCollider, Collider embarkCol, Transform ___itemRigidbody)
             {
                 if (!Plugin.stickyFix.Value) return true;
+                if (GameState.currentlyLoading || GameState.justStarted) return true;
                 if (!__instance.sold) return false;
+
                 if (Plugin.aggressiveSF.Value)
                 {
                     if (___itemRigidbody.GetComponent<SimpleFloatingObject>().InWater || (float)Traverse.Create(__instance.itemRigidbodyC).Field("dynamicColTimer").GetValue() <= 0)
