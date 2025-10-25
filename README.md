@@ -58,7 +58,9 @@
 - Trade Fix: 
   - Fix trade or missions failing to complete with certain goods (requires a reload).
 - Salt Fix: 
-  - Fix salt kegs causing NREs. nFix salt (and tea?) trade/mission menu weight display.nFix look text for mission salt barrels.
+  - Fix salt kegs causing NREs.
+  - Fix salt (and tea?) trade/mission menu weight display.
+  - Fix look text for mission salt barrels.
 - Mission Penalty Fix: 
   - Fix the reputation penalty notification.
 - Recovery Fix: 
