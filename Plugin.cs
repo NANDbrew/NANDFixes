@@ -4,6 +4,7 @@ using HarmonyLib;
 using NANDFixes.Scripts;
 using System;
 using System.Reflection;
+using UnityEngine;
 
 namespace NANDFixes
 {
@@ -36,7 +37,15 @@ namespace NANDFixes
         internal static ConfigEntry<bool> invRotationFix;
         internal static ConfigEntry<bool> mushroomFix;
         internal static ConfigEntry<bool> mapFix;
+        internal static ConfigEntry<bool> aoPatch;
+        internal static ConfigEntry<bool> damagePatch;
+        internal static ConfigEntry<bool> demandFix;
+        internal static ConfigEntry<bool> saltFix;
+        internal static ConfigEntry<bool> missionPenaltyFix;
+        internal static ConfigEntry<bool> recoveryFix;
+
         internal static int threshold = 1000;
+        public static AmplifyOcclusionEffect aoEffect;
 
         public static Plugin instance;
 
@@ -60,13 +69,53 @@ namespace NANDFixes
             bedCamAdjust = Config.Bind("", "Bed camera adjustment", true, new ConfigDescription("Moves the sleep position in certain beds up a bit to fix the camera clipping through"));
             playerEmbark = Config.Bind("", "Boat-to-boat embark fix", true, new ConfigDescription("Fix for the \"falling through the deck when jumping between boats\" issue"));
             velocityFix = Config.Bind("", "Item velocity fix", true, new ConfigDescription("Fix thrown items bouncing back out of boats or flying the wrong way"));
-            clothFix = Config.Bind("", "Sailcloth fix", true, new ConfigDescription("Fix squished/stretched sailcloth"));
+            clothFix = Config.Bind("", "Sailcloth fix", true, new ConfigDescription("Fix squished/stretched sailcloth when unfurling"));
             barrelPatches = Config.Bind("", "Barrel patches", true, new ConfigDescription("Fix accidentally drinking from barrels"));
             sailBlinkFix = Config.Bind("", "Sail blinking fix", true, new ConfigDescription("Fix junk and junk square sails white blinky bug"));
             mastColPatch = Config.Bind("", "Mast item fix", true, new ConfigDescription("Fix the bug that makes items attached to masts un-targetable (requires restart)"));
             buyUIPatch = Config.Bind("", "Floating scroll fix", true, new ConfigDescription("Fix floating \"sell item\" menu"));
             albacoreFix = Config.Bind("", "Rotten albacore fix", true, new ConfigDescription("Fix Gold Albacore starting out rotten and being unslicable"));
+            aoPatch = Config.Bind("", "Ambient Occlusion fog fix", true, new ConfigDescription("Fix ambient occlusion artifacts in dense fog"));
+            damagePatch = Config.Bind("", "Boat Damage Graphic fix", true, new ConfigDescription("Fix damage cracks rendering over water"));
+            demandFix = Config.Bind("", "Trade Fix", true, new ConfigDescription("Fix trade or missions failing to complete with certain goods (requires a reload)"));
+            saltFix = Config.Bind("", "Salt Fix", true, new ConfigDescription("Fix salt kegs causing NREs. \nFix salt (and tea?) trade/mission menu weight display.\nFix look text for mission salt barrels"));
+            missionPenaltyFix = Config.Bind("", "Mission Penalty Fix", true, new ConfigDescription("Fix the reputation penalty notification"));
+            recoveryFix = Config.Bind("", "Recovery Fix", true, new ConfigDescription("Fix the recovery issue at Dead Cove and Turtle Island"));
 
+            aoPatch.SettingChanged += (sender, args) => ToggleAOPatch();
+        }
+
+        private void Update()
+        {
+            if (aoPatch.Value)
+            {
+                if (aoEffect == null && Camera.main.gameObject.GetComponent<AmplifyOcclusionEffect>() is AmplifyOcclusionEffect effect)
+                {
+                    aoEffect = effect;
+                    aoEffect.FadeEnabled = true;
+                    //UpdateAOSamples();
+                }
+                else
+                {
+                    aoEffect.FadeStart = 0.5f / RenderSettings.fogDensity;
+                    aoEffect.FadeLength = (0.1f / RenderSettings.fogDensity) + 5;
+                }
+            }
+        }
+        private void ToggleAOPatch()
+        {
+            if (aoPatch.Value)
+            {
+                if (Camera.main.gameObject.GetComponent<AmplifyOcclusionEffect>() is AmplifyOcclusionEffect effect)
+                {
+                    aoEffect = effect;
+                    aoEffect.FadeEnabled = true;
+                }
+            }
+            else if (aoEffect != null)
+            {
+                aoEffect.FadeEnabled = false;
+            }
         }
     }
 }
