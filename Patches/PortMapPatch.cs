@@ -1,9 +1,4 @@
 ﻿using HarmonyLib;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 
 namespace NANDFixes.Patches
@@ -13,25 +8,63 @@ namespace NANDFixes.Patches
     {
         public static void Postfix(Port __instance, int ___portIndex)
         {
-            if (__instance.oceanMapLocation != null || __instance.localMapLocation == null) return;
-            if (___portIndex == 28)
+            if (__instance.oceanMapLocation == null && __instance.localMapLocation != null)
             {
-                __instance.oceanMapLocation = UnityEngine.Object.Instantiate(__instance.localMapLocation);
-                __instance.oceanMapLocation.localPosition = new Vector3(0.0693f, 0.3961f, -0.0001f);
-                __instance.oceanMapLocation.name = "Wm map Cave";
+                if (___portIndex == 18) // siren song
+                {
+                    __instance.oceanMapLocation = UnityEngine.Object.Instantiate(__instance.localMapLocation, __instance.localMapLocation.parent);
+                    __instance.oceanMapLocation.localPosition = new Vector3(0.0503f, 0.4123f, -0.0001f);
+                    __instance.oceanMapLocation.name = "Wm map Siren Song";
+                }
+                if (___portIndex == 19) // eastwind
+                {
+                    __instance.oceanMapLocation = UnityEngine.Object.Instantiate(__instance.localMapLocation, __instance.localMapLocation.parent);
+                    __instance.oceanMapLocation.localPosition = new Vector3(0.0191f, 0.4262f, -0.0001f);
+                    __instance.oceanMapLocation.name = "Wm map Eastwind";
+                }
+                else if (___portIndex == 26) // aestra abbey
+                {
+                    __instance.oceanMapLocation = UnityEngine.Object.Instantiate(__instance.localMapLocation, __instance.localMapLocation.parent);
+                    __instance.oceanMapLocation.localPosition = new Vector3(0.0315f, 0.3797f, -0.0001f);
+                    __instance.oceanMapLocation.name = "Wm map Monastery";
+                }
+                else if (___portIndex == 27) // fey valley
+                {
+                    __instance.oceanMapLocation = UnityEngine.Object.Instantiate(__instance.localMapLocation, __instance.localMapLocation.parent);
+                    __instance.oceanMapLocation.localPosition = new Vector3(0.0649f, 0.4096f, -0.0001f);
+                    __instance.oceanMapLocation.name = "Wm map Valley";
+                }
+                if (___portIndex == 28) // firefly grotto
+                {
+                    __instance.oceanMapLocation = UnityEngine.Object.Instantiate(__instance.localMapLocation, __instance.localMapLocation.parent);
+                    __instance.oceanMapLocation.localPosition = new Vector3(0.0693f, 0.3961f, -0.0001f);
+                    __instance.oceanMapLocation.name = "Wm map Cave";
+                }
+                else if (___portIndex == 29) // turtle island
+                {
+                    __instance.oceanMapLocation = UnityEngine.Object.Instantiate(__instance.localMapLocation, __instance.localMapLocation.parent);
+                    __instance.oceanMapLocation.localPosition = new Vector3(0.4498f, -0.3815f, -0.0001f);
+                    __instance.oceanMapLocation.name = "We map Jungle";
+                }
+                else if (___portIndex == 30) // dead cove
+                {
+                    __instance.oceanMapLocation = UnityEngine.Object.Instantiate(__instance.localMapLocation, __instance.localMapLocation.parent);
+                    __instance.oceanMapLocation.localPosition = new Vector3(0.3641f, -0.372f, -0.0001f);
+                    __instance.oceanMapLocation.name = "We map Swamp";
+                }
             }
-            else if (___portIndex == 27)
-            {
-                __instance.oceanMapLocation = UnityEngine.Object.Instantiate(__instance.localMapLocation);
-                __instance.oceanMapLocation.localPosition = new Vector3(0.0649f, 0.4096f, -0.0001f);
-                __instance.oceanMapLocation.name = "Wm map Valley";
-            }
-            else if (___portIndex == 26)
-            {
-                __instance.oceanMapLocation = UnityEngine.Object.Instantiate(__instance.localMapLocation);
-                __instance.oceanMapLocation.localPosition = new Vector3(0.0315f, 0.3797f, -0.0001f);
-                __instance.oceanMapLocation.name = "Wm map Abbey";
-            }
+            //__instance.oceanMapLocation.Translate(0f, 0f, -0.0001f);
+            //__instance.localMapLocation.Translate(0f, 0f, -0.0001f);
+
+        }
+    }
+    [HarmonyPatch(typeof(MissionDetailsUI), "Start")]
+    internal static class MissionLinePatch
+    {
+        public static void Postfix(Transform ___routeLine, Transform ___destinationMarker)
+        {
+            //___routeLine.GetComponent<Renderer>().sharedMaterial.renderQueue = 3000;
+            ___destinationMarker.GetComponent<Renderer>().sharedMaterial.renderQueue = 3000;
         }
     }
 }
