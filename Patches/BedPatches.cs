@@ -16,19 +16,32 @@ namespace NANDFixes.Patches
         public static void Postfix(GPButtonBed __instance) 
         {
             if (!Plugin.bedCamAdjust.Value) return;
-            Vector3 pos = __instance.transform.GetChild(0).localPosition;
-            if (__instance.name == "hammock_001")
-            {
-                pos.z += 0.3f;
-            }
-            if (__instance.name == "bed")
-            {
-                pos.z += 0.2f;
-            }
-            __instance.transform.GetChild(0).localPosition = pos;
+            __instance.transform.GetChild(0).Translate(new Vector3(0f, 0.3f, 0f), Space.Self);
         }
     }
+    [HarmonyPatch(typeof(PrefabsDirectory), "PopulateShipItems")]
+    internal static class BedPatche
+    {
+        public static void Postfix(PrefabsDirectory __instance)
+        {
+            if (!Plugin.bedCamAdjust.Value) return;
+            for (int i = 60; i < 64; i++)
+            {
+                var sleepPos = __instance.shipItems[i].transform.GetChild(0);
+                Transform child = null;
+                if (sleepPos.childCount > 0)
+                {
+                    child = sleepPos.GetChild(0);
+                    child.parent = sleepPos.parent;
+                }
+                
+                sleepPos.Translate(new Vector3(0f, 0.2f, 0.0f), Space.Self);
 
+                if (child != null) child.parent = sleepPos;
+            }
+
+        }
+    }
     [HarmonyPatch(typeof(ShipItemBed), "OnAltActivate")]
     internal static class BedPathes2
     {
