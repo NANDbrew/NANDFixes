@@ -1,23 +1,67 @@
-# NANDFixes
-**Bugfixes**
-- Fixes thrown items bouncing out of boats or flying off in the wrong direction
-- Stops barrels fitting in inventory
-- Fixes being able to drink from mission barrels
-- Fixes bottles trying to fill from empty barrels
-- Fixes bottles trying to fill when already full
-- Fixes oranges coming out of crates cooked
-- Fixes tobacco box inventory and held rotations
-- Fixes Aestrin compass inventory rotation
-- Fixes an issue with Kicia altar sound effects
-- Fixes falling through boats when moving from another boat
-- Prevents accidentally drinking from barrels
-- Fixes Kicia altar purring sound getting stuck on
+# NANDfixes
 
-**Options**
-- StickyFix. Fixes the following bugs:
-  - when boats collide items will get stuck on the other boat
-  - when moving items between boats they are sometimes not "removed" from the old boat, leading to listing and possibly sinking
-- Boat-to-boat embark fix (Fix for the "falling through the deck when jumping between boats" issue
-- Bed camera adjustment (Moves sleep position in certain beds up a bit to fix the camera clipping through)
-- item velocity fix (fixes thrown items bouncing out of boats or flying off in the wrong direction)
-- Barrel patches (fixex barrels in inventory, mission barrrels, accidental drinking)
+**Always-on patches**
+- fixes missing world map markers for Fey Valley, Firefly Grotto, Siren Song, Eastwind, Aestra Abbey, Dead Cove, Turtle Island
+- fixes junk gaffs colliding with things that should be below them
+- fixes shipyard issues with the Jong, and any boat that can't be cleaned/can't get dirty
+- fixes water clipping through the Sanbuq
+- fixes crates being unopenable after losing or selling one
+- adds colliders to Gold Rock City's market fountain
+- fixes Kicia Altar sound effect getting stuck on
+- fixes that weird glowy line that shows up in the distance when the shipyard is active
+
+**Optional patches**
+- StickyFix: 
+  - Fix the infamous "things getting stuck to other boats" bug.
+- Aggressive StickyFix:
+  - Should stickyFix prevent items that are stationary or in water from embarking?
+  - Only applies when StickyFix is enabled.
+  - Disabled by default
+- Map Fix: 
+  - fixes rolled maps unrolling themselves on game load.
+- Mushroom Fix: 
+  - fixes cave mushrooms and field mushrooms falling through the floor.
+- Inventory rotation adjustments: 
+  - fixes small boxes, compasses and totems facing the wrong way in inventory.
+- Flying Carpet Fix: 
+  - prevents sleeping in a bed you're holding.
+- Boat Collider Fix: 
+  - makes boats less likely to phase through things.
+- Crane Fix: 
+  - fix gold rock city's shipyard crane colliders.
+- Spin Fix: 
+  - keep boats from spinning while the player is in a shipyard.
+- Cleaning Fix: 
+  - workaround for the Jong's shipyard crash.
+- Bed camera adjustment: 
+  - Moves the sleep position in certain beds up a bit to fix the camera clipping through.
+- Boat-to-boat embark fix: 
+  - Fix for the "falling through the deck when jumping between boats" issue.
+- Item velocity fix: 
+  - Fix thrown items bouncing back out of boats or flying the wrong way.
+- Sailcloth fix: 
+  - Fix squished/stretched sailcloth when unfurling.
+- Barrel patches: 
+  - Fix accidentally drinking from barrels.
+- Sail blinking fix: 
+  - Fix junk and junk square sails white blinky bug.
+- Mast item fix: 
+  - Fix the bug that makes items attached to masts un-targetable (requires restart).
+- Floating scroll fix: 
+  - Fix floating "sell item" menu.
+- Rotten albacore fix: 
+  - Fix Gold Albacore starting out rotten and being unslicable.
+- Ambient Occlusion fog fix: 
+  - Fix ambient occlusion artifacts in dense fog.
+- Boat Damage Graphic fix: 
+  - Fix damage cracks rendering over water.
+- Trade Fix: 
+  - Fix trade or missions failing to complete with certain goods (requires a reload).
+- Salt Fix: 
+  - Fix salt kegs causing NREs.
+  - Fix salt (and tea?) trade/mission menu weight display.
+  - Fix look text for mission salt barrels.
+- Mission Penalty Fix: 
+  - Fix the reputation penalty notification.
+- Recovery Fix: 
+  - Fix the recovery issue at Dead Cove and Turtle Island.
