@@ -14,7 +14,7 @@ namespace NANDFixes
     {
         public const string PLUGIN_ID = "com.nandbrew.nandfixes";
         public const string PLUGIN_NAME = "NAND Fixes";
-        public const string PLUGIN_VERSION = "1.3.0";
+        public const string PLUGIN_VERSION = "1.3.1";
 
         //--settings--
         //internal static ConfigEntry<bool> hook_shelf;
