@@ -53,8 +53,16 @@ namespace NANDFixes.Patches
                     __instance.oceanMapLocation.name = "We map Swamp";
                 }
             }
-            //__instance.oceanMapLocation.Translate(0f, 0f, -0.0001f);
-            //__instance.localMapLocation.Translate(0f, 0f, -0.0001f);
+
+            if (__instance.oceanMapLocation != null)
+            {
+                __instance.oceanMapLocation.localPosition = new Vector3(__instance.oceanMapLocation.localPosition.x, __instance.oceanMapLocation.localPosition.y, -0.0002f);
+            }
+            if (__instance.localMapLocation != null)
+            {
+                __instance.localMapLocation.localPosition = new Vector3(__instance.localMapLocation.localPosition.x, __instance.localMapLocation.localPosition.y, -0.0002f); 
+            }
+
 
         }
     }

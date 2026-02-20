@@ -73,7 +73,7 @@ namespace NANDFixes.Patches
                 if (___currentActualBoat && !___currentlyStayedEmbarkCol && ___frameCounter > Plugin.threshold && __instance.transform.localPosition.sqrMagnitude > 2500f)
                 {
                     AccessTools.Method(__instance.GetType(), "ExitBoat").Invoke(__instance, null);
-                    Debug.LogWarning("nandFixes: object exiting boat due to frame count");
+                    Debug.LogWarning($"nandFixes: {__instance.name} exiting boat due to frame count");
                 }
 
             }
@@ -105,7 +105,7 @@ namespace NANDFixes.Patches
 
             [HarmonyPatch("ExitBoat")]
             [HarmonyPrefix]
-            public static void ExitBoat(ShipItem __instance, ItemRigidbody ___itemRigidbodyC, Collider ___currentBoatCollider)
+            public static void ExitBoat(ShipItem __instance, Collider ___currentBoatCollider)
             {
                 if (!Plugin.stickyFix.Value) return;
                 if (__instance.GetComponent<EmbarkTracker>() is EmbarkTracker tracker)

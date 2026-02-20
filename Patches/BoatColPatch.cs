@@ -11,7 +11,7 @@ namespace NANDFixes.Patches
     [HarmonyPatch(typeof(BoatEmbarkCollider), "ToggleBoatCapsuleCol")]
     internal static class BoatColPatch
     {
-        public static bool Prefix(BoatEmbarkCollider __instance, CapsuleCollider ___capsuleCol)
+        public static bool Prefix(CapsuleCollider ___capsuleCol)
         {
             Physics.IgnoreCollision(___capsuleCol, Refs.charController, Plugin.boatColFix.Value);
             //Collider hullCol = __instance.GetTopmostBoatParent().GetComponentInChildren<HullPlayerCollider>().GetComponent<Collider>();
