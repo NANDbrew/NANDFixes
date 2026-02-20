@@ -26,7 +26,7 @@ namespace NANDFixes.Patches
             ChangeRot(ref __instance.shipItems[82], __instance.shipItems[82].heldRotationOffset, 180, 270);
             ChangeRot(ref __instance.shipItems[86], __instance.shipItems[86].heldRotationOffset, 180, 270);
             ChangeRot(ref __instance.shipItems[99], __instance.shipItems[99].heldRotationOffset, 90, 45);
-            ChangeRot(ref __instance.shipItems[79], 180, __instance.shipItems[79].inventoryRotation, __instance.shipItems[79].inventoryRotationX);
+            ChangeRot(ref __instance.shipItems[79], __instance.shipItems[79].heldRotationOffset, 180, __instance.shipItems[79].inventoryRotationX);
 
         }
         private static void ChangeRot(ref ShipItem item, float heldRot, float invRot, float invRotX)
