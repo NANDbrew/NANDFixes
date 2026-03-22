@@ -1,82 +1,83 @@
-﻿//using HarmonyLib;
-//using NANDFixes.Scripts;
-//using System.Linq;
-//using UnityEngine;
+﻿using HarmonyLib;
+using NANDFixes.Scripts;
+using UnityEngine;
+using System.Linq;
 
-//namespace NANDFixes.Patches
-//{
-//    [HarmonyPatch(typeof(PlayerEmbarkDisembarkTrigger))]
-//    internal static class PlayerEmbarkPatch
-//    {
-//        //static float debounce = 0.5f;
-//        [HarmonyPatch("Awake")]
-//        [HarmonyPrefix]
-//        public static void Awake(PlayerEmbarkDisembarkTrigger __instance)
-//        {
-//            __instance.gameObject.AddComponent<EmbarkTracker>();
-//        }
 
-//        [HarmonyPatch("OnTriggerEnter")]
-//        [HarmonyPrefix]
-//        public static bool OnTriggerEnter(Collider other, PlayerEmbarkDisembarkTrigger __instance)
-//        {
-//            if (!Plugin.playerEmbark.Value) return true;
-//            //if (!GameState.playing || GameState.justStarted /*|| PlayerEmbarkDisembarkTrigger.timeSinceEmbark < debounce*/) return true;
+namespace NANDFixes.Patches
+{
+    [HarmonyPatch(typeof(PlayerEmbarkerNew))]
+    internal static class PlayerEmbarkPatch
+    {
+        [HarmonyPatch("Awake")]
+        [HarmonyPostfix]
+        public static void AwakePatch(PlayerEmbarkerNew __instance)
+        {
+            __instance.gameObject.AddComponent<EmbarkTracker>();
+        }
 
-//            if (other.CompareTag("EmbarkCol"))
-//            {
-//                EmbarkTracker tracker = __instance.GetComponent<EmbarkTracker>();
-//                if (!tracker.embarkColliders.Contains(other))
-//                {
-//                    tracker.embarkColliders.Add(other);
-//                }
-//                if (tracker.embarkColliders.Count > 1)
-//                {
-//                    return false;
-//                }
-//            }
-//            return true;
-//        }
+        [HarmonyPatch("ObserverTriggerEnter")]
+        [HarmonyPrefix]
+        public static bool ObserverTriggerEnterPatch(Collider other, Collider ___currentSmallCol, PlayerEmbarkerNew __instance)
+        {
+            if (!Plugin.playerEmbark.Value) return true;
+            if (GameState.currentShipyard != null) return false;
+            if (other.CompareTag("EmbarkCol"))
+            {
+                EmbarkTracker tracker = __instance.GetComponent<EmbarkTracker>();
+                if (!tracker.embarkColliders.Contains(other))
+                {
+                    tracker.embarkColliders.Add(other);
+                }
+                if (tracker.embarkColliders.Count > 1)
+                {
+                    return false;
+                }
+            }
 
-//        [HarmonyPatch("OnTriggerExit")]
-//        [HarmonyPostfix]
-//        public static void OnTriggerExit(PlayerEmbarkDisembarkTrigger __instance, Collider other)
-//        {
-//            if (!Plugin.playerEmbark.Value) return;
-//            //if (!GameState.playing || GameState.justStarted) return;
+            if (___currentSmallCol != null)
+            {
 
-//            if (other.CompareTag("EmbarkCol"))
-//            {
-//                EmbarkTracker tracker = __instance.GetComponent<EmbarkTracker>();
-//                tracker.embarkColliders.Remove(other);
+#if DEBUG
+                Debug.Log("NANDFixes: prevented disembark due to still in smallCol");
+#endif
+                return false;
 
-//                if (tracker.embarkColliders.Count >= 1)
-//                {
-//                    AccessTools.Method(__instance.GetType(), "OnTriggerEnter").Invoke(__instance, new object[] { tracker.embarkColliders.Last() });
+            }
+            if (other.GetComponent<Anchor>())
+            {
+#if DEBUG
+                Debug.Log("NANDFixes: prevented disembark due to anchor");
+#endif
+                return false;
+            }
+            return true;
+        }
 
-//                    /*___currentlyStayedTrigger = tracker.embarkColliders.Last();
-//                    ___currentlyStayedEmbarkCol = ___currentlyStayedTrigger.GetComponent<BoatEmbarkCollider>();
-//                    ___currentlyStayedEmbarkCol.ToggleBoatCapsuleCol(newState: false);
-//                    ___exitBoatFlag = false;*/
+        [HarmonyPatch("ObserverTriggerExit")]
+        [HarmonyPostfix]
+        public static void OnTriggerExit(PlayerEmbarkerNew __instance, Collider other)
+        {
+            if (!Plugin.playerEmbark.Value) return;
+            //if (!GameState.playing || GameState.justStarted) return;
 
-//                }
-//            }
-//        }
-//        [HarmonyPatch("LateUpdate")]
-//        [HarmonyPostfix]
-//        public static void UpdatePatch(PlayerEmbarkDisembarkTrigger __instance, ref bool ___exitBoatFlag, Collider ___currentlyStayedTrigger, ref Collider ___currentBoatCollider, ref float ___disembarkHeight, Transform ___playerObserver, bool __runOriginal)
-//        {
-//            if (!Plugin.playerEmbark.Value || !__runOriginal) return;
-//            //if (!GameState.playing || GameState.justStarted) return;
-//            //PlayerEmbarkDisembarkTrigger.timeSinceEmbark += Time.deltaTime;
-//            if (PlayerEmbarkDisembarkTrigger.embarked && !GameState.sleeping && !GameState.justWokeUp && !GameState.currentShipyard)
-//            {
-//                if (___currentlyStayedTrigger != null && ___currentlyStayedTrigger != ___currentBoatCollider && !(bool)AccessTools.Method(__instance.GetType(), "IsGroundedOnBoat").Invoke(__instance, null))
-//                {
-//                    ___exitBoatFlag = true;
-//                    ___disembarkHeight = ___playerObserver.position.y;
-//                }
-//            }
-//        }
-//    }
-//}
+            if (other.CompareTag("EmbarkCol"))
+            {
+                EmbarkTracker tracker = __instance.GetComponent<EmbarkTracker>();
+                tracker.embarkColliders.Remove(other);
+
+                if (tracker.embarkColliders.Count >= 1)
+                {
+                    __instance.ObserverTriggerEnter(tracker.embarkColliders.Last());
+
+                    /*___currentlyStayedTrigger = tracker.embarkColliders.Last();
+                    ___currentlyStayedEmbarkCol = ___currentlyStayedTrigger.GetComponent<BoatEmbarkCollider>();
+                    ___currentlyStayedEmbarkCol.ToggleBoatCapsuleCol(newState: false);
+                    ___exitBoatFlag = false;*/
+
+                }
+            }
+        }
+
+    }
+}
