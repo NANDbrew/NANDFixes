@@ -7,16 +7,29 @@ namespace NANDFixes.Patches
         [HarmonyPatch(typeof(ShipyardUIOrderText), "AddLine")]
         public static class OrderTextPatch
         {
-            public static string wrapString = "->";
+            public static string arrow = "->";
+            public static string wrapString2 = "(";
             public static void Prefix(ShipyardUIOrderText __instance, ref string line)
             {
-                if (line.Length > 45 && line.Contains(wrapString))
+                if (!Plugin.shipyardTextWrap.Value) return;
+                if (line.Length > Plugin.orderWrapThreshold)
                 {
-                    // add new line for first half
-                    __instance.AddLine(line.Substring(0, line.IndexOf(wrapString) + 2));
+                    if (line.Contains(arrow))
+                    {
+                        // add new line for first half
+                        __instance.AddLine(line.Substring(0, line.IndexOf(arrow) + 2));
 
-                    // second half of original is now second line
-                    line = "--" + line.Substring(line.IndexOf(wrapString));
+                        // second half of original is now second line
+                        line = "--" + line.Substring(line.IndexOf(arrow));
+                    }
+                    else if (line.Contains(wrapString2))
+                    {
+                        // add new line for first half
+                        __instance.AddLine(line.Substring(0, line.LastIndexOf(wrapString2)));
+
+                        // second half of original is now second line
+                        line = "      " + line.Substring(line.LastIndexOf(wrapString2));
+                    }
                 }
             }
         }
@@ -25,6 +38,8 @@ namespace NANDFixes.Patches
         {
             public static void Prefix(ref string text)
             {
+                if (!Plugin.shipyardTextWrap.Value) return;
+
                 if (text.Length > 18 && text[0] != '(')
                 {
                     // start lower than max to avoid single-letter second line

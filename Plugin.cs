@@ -14,7 +14,7 @@ namespace NANDFixes
     {
         public const string PLUGIN_ID = "com.nandbrew.nandfixes";
         public const string PLUGIN_NAME = "NAND Fixes";
-        public const string PLUGIN_VERSION = "1.3.1";
+        public const string PLUGIN_VERSION = "1.4.0";
 
         //--settings--
         //internal static ConfigEntry<bool> hook_shelf;
@@ -43,7 +43,9 @@ namespace NANDFixes
         internal static ConfigEntry<bool> saltFix;
         internal static ConfigEntry<bool> missionPenaltyFix;
         internal static ConfigEntry<bool> recoveryFix;
+        internal static ConfigEntry<bool> shipyardTextWrap;
 
+        internal static int orderWrapThreshold = 45;
         internal static int threshold = 1000;
         public static AmplifyOcclusionEffect aoEffect;
 
@@ -81,6 +83,7 @@ namespace NANDFixes
             saltFix = Config.Bind("", "Salt Fix", true, new ConfigDescription("Fix salt kegs causing NREs. \nFix salt (and tea?) trade/mission menu weight display.\nFix look text for mission salt barrels"));
             missionPenaltyFix = Config.Bind("", "Mission Penalty Fix", true, new ConfigDescription("Fix the reputation penalty notification"));
             recoveryFix = Config.Bind("", "Recovery Fix", true, new ConfigDescription("Fix the recovery issue at Dead Cove and Turtle Island"));
+            shipyardTextWrap = Config.Bind("", "Shipyard Text Wrap", true, new ConfigDescription("Wrap text in shipyard ui to prevent overflow"));
 
             aoPatch.SettingChanged += (sender, args) => ToggleAOPatch();
         }
@@ -116,6 +119,15 @@ namespace NANDFixes
             {
                 aoEffect.FadeEnabled = false;
             }
+        }
+
+        public static void SetWrapThreshold(int threshold)
+        {
+            orderWrapThreshold = threshold;
+        }
+        public static void ResetWrapThreshold()
+        {
+            orderWrapThreshold = 45;
         }
     }
 }
