@@ -1,4 +1,4 @@
-﻿/*using HarmonyLib;
+﻿using HarmonyLib;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +13,7 @@ namespace NANDFixes.Patches
         [HarmonyPatch(typeof(ShipItemBottle))]
         private static class BarrelDrinkPatches
         {
-            [HarmonyPatch("ExtraLateUpdate")]
+/*            [HarmonyPatch("ExtraLateUpdate")]
             [HarmonyPostfix]
             public static void ExtraLateUpdatePatch(ref bool ___big, bool ___wasDrinking, bool ___drinking, float ___capacity)
             {
@@ -35,7 +35,7 @@ namespace NANDFixes.Patches
                 if (___goodC && ___goodC.GetMissionIndex() != -1) return false;
                 return true;
 
-            }
+            }*/
 
             [HarmonyPatch("TryDrinkBottle")]
             [HarmonyPrefix]
@@ -53,4 +53,3 @@ namespace NANDFixes.Patches
         }
     }
 }
-*/
