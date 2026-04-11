@@ -111,7 +111,13 @@ namespace NANDFixes.Patches
                 if (__instance.GetComponent<EmbarkTracker>() is EmbarkTracker tracker)
                 {
                     tracker.embarkColliders.Remove(___currentBoatCollider);
-
+                }
+                if (__instance.GetComponent<CrateInventory>() is CrateInventory crateInventory)
+                {
+                    foreach (var item in crateInventory.containedItems)
+                    {
+                        AccessTools.Method(item.GetType(), "ExitBoat").Invoke(item, null);
+                    }
                 }
 
             }
