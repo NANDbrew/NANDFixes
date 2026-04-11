@@ -22,6 +22,7 @@ namespace NANDFixes
         internal static ConfigEntry<bool> aggressiveSF;
         internal static ConfigEntry<bool> bedCamAdjust;
         internal static ConfigEntry<bool> playerEmbark;
+        internal static ConfigEntry<bool> playerEmbark2;
         internal static ConfigEntry<bool> velocityFix;
         internal static ConfigEntry<bool> clothFix;
         internal static ConfigEntry<bool> sailBlinkFix;
@@ -71,6 +72,7 @@ namespace NANDFixes
             cleaningFix = Config.Bind("", "Cleaning Fix", true, new ConfigDescription("workaround for the Jong's shipyard crash"));
             bedCamAdjust = Config.Bind("", "Bed camera adjustment", true, new ConfigDescription("Moves the sleep position in certain beds up a bit to fix the camera clipping through"));
             playerEmbark = Config.Bind("", "Player embark fix", false, new ConfigDescription("Fix player embarking issues"));
+            playerEmbark2 = Config.Bind("", "Player embark fix (advanced)", false, new ConfigDescription("Fix issues with player embarking between boats"));
             velocityFix = Config.Bind("", "Item velocity fix", true, new ConfigDescription("Fix thrown items bouncing back out of boats or flying the wrong way"));
             clothFix = Config.Bind("", "Sailcloth fix", true, new ConfigDescription("Fix squished/stretched sailcloth when unfurling"));
             barrelPatches = Config.Bind("", "Barrel patches", true, new ConfigDescription("Fix accidentally drinking from barrels"));
