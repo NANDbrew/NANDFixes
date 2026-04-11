@@ -46,6 +46,7 @@ namespace NANDFixes
         internal static ConfigEntry<bool> missionPenaltyFix;
         internal static ConfigEntry<bool> recoveryFix;
         internal static ConfigEntry<bool> shipyardTextWrap;
+        internal static ConfigEntry<bool> itemPlaceHeightFix;
 
         internal static int orderWrapThreshold = 45;
         internal static int threshold = 1000;
@@ -89,6 +90,7 @@ namespace NANDFixes
             recoveryFix = Config.Bind("", "Recovery Fix", true, new ConfigDescription("Fix the recovery issue at Dead Cove and Turtle Island"));
             shipyardTextWrap = Config.Bind("", "Shipyard Text Wrap", true, new ConfigDescription("Wrap text in shipyard ui to prevent overflow"));
             boatHeightFix = Config.Bind("", "Boat Height Fix", true, new ConfigDescription("Fix boats loading underwater"));
+            itemPlaceHeightFix = Config.Bind("", "Item placement height fixes", true, new ConfigDescription("Fix items clipping into surfaces when placed on furniture"));
 
             aoPatch.SettingChanged += (sender, args) => ToggleAOPatch();
         }

@@ -143,6 +143,7 @@
     <Compile Include="Patches\MastButtonFix.cs" />
     <Compile Include="Patches\RecoveryPortPatch.cs" />
     <Compile Include="Patches\SaltFix.cs" />
+    <Compile Include="Patches\ShipItemPlaceHeightPatch.cs" />
     <Compile Include="Patches\ShipyardTextWrap.cs" />
     <Compile Include="Patches\BarrelDrinkingPatches.cs" />
     <Compile Include="Patches\BedPatches.cs" />
