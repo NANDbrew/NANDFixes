@@ -40,7 +40,7 @@ namespace NANDFixes
         internal static ConfigEntry<bool> mapFix;
         internal static ConfigEntry<bool> aoPatch;
         internal static ConfigEntry<bool> damagePatch;
-        internal static ConfigEntry<bool> damagePatch2;
+        //internal static ConfigEntry<bool> damagePatch2;
         internal static ConfigEntry<bool> demandFix;
         internal static ConfigEntry<bool> saltFix;
         internal static ConfigEntry<bool> missionPenaltyFix;
@@ -83,14 +83,14 @@ namespace NANDFixes
             albacoreFix = Config.Bind("", "Rotten albacore fix", true, new ConfigDescription("Fix Gold Albacore starting out rotten and being unslicable"));
             aoPatch = Config.Bind("", "Ambient Occlusion fog fix", true, new ConfigDescription("Fix ambient occlusion artifacts in dense fog"));
             damagePatch = Config.Bind("", "Boat Damage Graphic fix", true, new ConfigDescription("Fix damage cracks rendering over water\nFix water intake splash when loading a save"));
-            damagePatch2 = Config.Bind("", "Boat impact damage", true, new ConfigDescription("Fix damage while sleeping at an inn or while moored"));
+            //damagePatch2 = Config.Bind("", "Boat impact damage fix", true, new ConfigDescription("Fix damage while sleeping at an inn or while moored"));
             demandFix = Config.Bind("", "Trade Fix", true, new ConfigDescription("Fix trade or missions failing to complete with certain goods (requires a reload)"));
             saltFix = Config.Bind("", "Salt Fix", true, new ConfigDescription("Fix salt kegs causing NREs. \nFix salt (and tea?) trade/mission menu weight display.\nFix look text for mission salt barrels"));
             missionPenaltyFix = Config.Bind("", "Mission Penalty Fix", true, new ConfigDescription("Fix the reputation penalty notification"));
             recoveryFix = Config.Bind("", "Recovery Fix", true, new ConfigDescription("Fix the recovery issue at Dead Cove and Turtle Island"));
             shipyardTextWrap = Config.Bind("", "Shipyard Text Wrap", true, new ConfigDescription("Wrap text in shipyard ui to prevent overflow"));
             boatHeightFix = Config.Bind("", "Boat Height Fix", true, new ConfigDescription("Fix boats loading underwater"));
-            itemPlaceHeightFix = Config.Bind("", "Item placement height fixes", true, new ConfigDescription("Fix items clipping into surfaces when placed on furniture"));
+            itemPlaceHeightFix = Config.Bind("", "Item placement height fixes", true, new ConfigDescription("Fix buckets clipping into surfaces when placed on furniture"));
 
             aoPatch.SettingChanged += (sender, args) => ToggleAOPatch();
         }

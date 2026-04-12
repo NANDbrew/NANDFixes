@@ -29,7 +29,7 @@ namespace NANDFixes.Patches
         }
     }
 
-
+/*
     [HarmonyPatch(typeof(BoatDamage), "Impact")]
     internal static class ImpactDamagePatch
     {
@@ -48,7 +48,7 @@ namespace NANDFixes.Patches
             }
             return true;
         }
-    }
+    }*/
 
     [HarmonyPatch(typeof(BoatHorizon), "UpdateKinematic")]
     internal static class BoatHeightPatch
