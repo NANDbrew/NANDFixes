@@ -68,7 +68,7 @@ namespace NANDFixes.Patches
             {
                 heightHelper.Init(___rigidbody.position, 0f, allowMultipleCallsPerFrame: true);
                 heightHelper.Sample(out var newHeight);
-                newHeight -= ___rigidbody.transform.position.y + (freshStart? 0.4f : 0.9f);
+                newHeight -= ___rigidbody.transform.position.y + (freshStart? 0.4f : 1f);
                 if (newHeight > 0)
                 {
                     ___rigidbody.transform.Translate(0, newHeight, 0);
