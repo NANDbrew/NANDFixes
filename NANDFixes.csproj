@@ -136,6 +136,7 @@
     <Compile Include="Patches\BoatDamagePatches.cs" />
     <Compile Include="Patches\CleaningPatch.cs" />
     <Compile Include="Patches\ClippingMaskPatch.cs" />
+    <Compile Include="Patches\CoconutTextPatch.cs" />
     <Compile Include="Patches\DemandFix.cs" />
     <Compile Include="Patches\MapPatch.cs" />
     <Compile Include="Patches\MissionPenaltyUIPatch.cs" />
