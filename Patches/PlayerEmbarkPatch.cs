@@ -18,10 +18,9 @@ namespace NANDFixes.Patches
 
         [HarmonyPatch("OnTriggerEnter")]
         [HarmonyPrefix]
-        public static bool TriggerEnterPatch(Collider other)
+        public static bool TriggerEnterPatch()
         {
-            if (!Plugin.playerEmbark2.Value) return true;
-            if (GameState.currentShipyard != null) return false;
+            if (Plugin.playerEmbark.Value && GameState.currentShipyard != null) return false;
             return true;
         }
 
@@ -29,10 +28,11 @@ namespace NANDFixes.Patches
         [HarmonyPrefix]
         public static bool ObserverTriggerEnterPatch(Collider other, Collider ___currentSmallCol, PlayerEmbarkerNew __instance)
         {
-            if (!Plugin.playerEmbark.Value) return true;
-            if (GameState.currentShipyard != null || other.GetComponent<Anchor>()) return false;
-
-            if (!Plugin.playerEmbark2.Value) return true;
+            if (Plugin.playerEmbark.Value && (GameState.currentShipyard != null || other.GetComponent<Anchor>()))
+            {
+                return false;
+            }
+            if (!Plugin.playerEmbarkAggro.Value) return true;
             if (other.CompareTag("EmbarkCol"))
             {
                 EmbarkTracker tracker = __instance.GetComponent<EmbarkTracker>();
@@ -60,10 +60,9 @@ namespace NANDFixes.Patches
 
         [HarmonyPatch("ObserverTriggerExit")]
         [HarmonyPostfix]
-        public static void OnTriggerExit(PlayerEmbarkerNew __instance, Collider other)
+        public static void OnTriggerExit(PlayerEmbarkerNew __instance, bool ___embarked, EmbarkBoat ___currentBoat, Collider other)
         {
-            if (!Plugin.playerEmbark2.Value) return;
-            //if (!GameState.playing || GameState.justStarted) return;
+            if (!Plugin.playerEmbarkAggro.Value) return;
 
             if (other.CompareTag("EmbarkCol"))
             {
@@ -74,14 +73,18 @@ namespace NANDFixes.Patches
                 {
                     __instance.ObserverTriggerEnter(tracker.embarkColliders.Last());
 
-                    /*___currentlyStayedTrigger = tracker.embarkColliders.Last();
-                    ___currentlyStayedEmbarkCol = ___currentlyStayedTrigger.GetComponent<BoatEmbarkCollider>();
-                    ___currentlyStayedEmbarkCol.ToggleBoatCapsuleCol(newState: false);
-                    ___exitBoatFlag = false;*/
-
                 }
+
+            }
+            else if (___embarked && other.CompareTag("EmbarkColPlayer") && other.transform.parent == ___currentBoat.worldBoat)
+            {
+#if DEBUG
+                Debug.Log("NANDfixes: exited big col. triggering disembark");
+#endif
+                AccessTools.Method(__instance.GetType(), "PlayerDisembark").Invoke(__instance, null);
             }
         }
 
     }
+
 }
