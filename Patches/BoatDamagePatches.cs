@@ -61,9 +61,10 @@ namespace NANDFixes.Patches
             __state = ___rigidbody.isKinematic;
         }
 
-        public static void Postfix(Rigidbody ___rigidbody, bool __state)
+        public static void Postfix(BoatHorizon __instance, Rigidbody ___rigidbody, bool __state)
         {
             if (!Plugin.boatHeightFix.Value) return;
+            if (!(bool)__instance.GetComponent<PurchasableBoat>()) return;
             if (__state && !___rigidbody.isKinematic)
             {
                 heightHelper.Init(___rigidbody.position, 0f, allowMultipleCallsPerFrame: true);
