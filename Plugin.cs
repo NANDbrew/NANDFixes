@@ -48,6 +48,8 @@ namespace NANDFixes
         internal static ConfigEntry<bool> recoveryFix;
         internal static ConfigEntry<bool> shipyardTextWrap;
         internal static ConfigEntry<bool> itemPlaceHeightFix;
+        internal static ConfigEntry<float> heightFixMax;
+        internal static ConfigEntry<float> heightFixMaxPause;
 
         internal static int orderWrapThreshold = 45;
         internal static int threshold = 1000;
@@ -93,6 +95,8 @@ namespace NANDFixes
             shipyardTextWrap = Config.Bind("", "Shipyard Text Wrap", true, new ConfigDescription("Wrap text in shipyard ui to prevent overflow"));
             boatHeightFix = Config.Bind("", "Boat Height Fix", true, new ConfigDescription("Fix boats loading underwater"));
             itemPlaceHeightFix = Config.Bind("", "Item placement height fixes", true, new ConfigDescription("Fix buckets clipping into surfaces when placed on furniture"));
+            heightFixMax = Config.Bind("", "Boat Fix Height (start)", 1f, new ConfigDescription("How far Boat Height Fix will move boats when loading a save", null, new ConfigurationManagerAttributes { IsAdvanced = true }));
+            heightFixMaxPause = Config.Bind("", "Boat Fix Height (pause)", 0.4f, new ConfigDescription("FixHow far Boat Height will move boats when unpausing", null, new ConfigurationManagerAttributes { IsAdvanced = true }));
 
             aoPatch.SettingChanged += (sender, args) => ToggleAOPatch();
         }

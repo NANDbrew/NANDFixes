@@ -64,12 +64,14 @@ namespace NANDFixes.Patches
         public static void Postfix(BoatHorizon __instance, Rigidbody ___rigidbody, bool __state)
         {
             if (!Plugin.boatHeightFix.Value) return;
-            if (!(bool)__instance.GetComponent<PurchasableBoat>()) return;
+            //if (!(bool)__instance.GetComponent<PurchasableBoat>()) return;
+            //Debug.Log("nfx: boatHeight");
             if (__state && !___rigidbody.isKinematic)
             {
+                //Debug.Log("nfx: boatHeight is doing");
                 heightHelper.Init(___rigidbody.position, 0f, allowMultipleCallsPerFrame: true);
                 heightHelper.Sample(out var newHeight);
-                newHeight -= ___rigidbody.transform.position.y + (freshStart? 0.4f : 1f);
+                newHeight -= ___rigidbody.transform.position.y + (freshStart? Plugin.heightFixMax.Value : Plugin.heightFixMaxPause.Value);
                 if (newHeight > 0)
                 {
                     ___rigidbody.transform.Translate(0, newHeight, 0);
