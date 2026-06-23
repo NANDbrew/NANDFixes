@@ -137,12 +137,10 @@
     <Compile Include="Patches\BoatDamagePatches.cs" />
     <Compile Include="Patches\CleaningPatch.cs" />
     <Compile Include="Patches\ClippingMaskPatch.cs" />
-    <Compile Include="Patches\CoconutTextPatch.cs" />
     <Compile Include="Patches\DemandFix.cs" />
     <Compile Include="Patches\MapPatch.cs" />
     <Compile Include="Patches\MapTablePatch.cs" />
     <Compile Include="Patches\MissionPenaltyUIPatch.cs" />
-    <Compile Include="Patches\MushroomFix.cs" />
     <Compile Include="Patches\MastButtonFix.cs" />
     <Compile Include="Patches\PrefabsDirectoryPatches.cs" />
     <Compile Include="Patches\RecoveryPortPatch.cs" />
@@ -163,9 +161,7 @@
     <Compile Include="Patches\SailPatches.cs" />
     <Compile Include="Patches\ShipItemEmbarkPatches.cs" />
     <Compile Include="Patches\ShipItemVelPatch.cs" />
-    <Compile Include="Patches\CraneFix.cs" />
     <Compile Include="Patches\SpinFix.cs" />
-    <Compile Include="Patches\ShipItemRotationPatches.cs" />
     <Compile Include="Plugin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Scripts\AssetTools.cs" />
