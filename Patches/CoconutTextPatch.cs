@@ -1,4 +1,4 @@
-﻿using HarmonyLib;
+﻿/*using HarmonyLib;
 namespace NANDFixes.Patches
 {
     [HarmonyPatch(typeof(PrefabsDirectory), "PopulateShipItems")]
@@ -10,3 +10,4 @@ namespace NANDFixes.Patches
         }
     }
 }
+*/

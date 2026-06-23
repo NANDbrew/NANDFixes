@@ -16,7 +16,7 @@ namespace NANDFixes.Patches
         public static void Postfix(GPButtonBed __instance) 
         {
             if (!Plugin.bedCamAdjust.Value) return;
-            __instance.transform.GetChild(0).Translate(new Vector3(0f, 0.3f, 0f), Space.Self);
+            __instance.transform.GetChild(0).Translate(Vector3.up * 0.3f, Space.Self);
         }
     }
     [HarmonyPatch(typeof(PrefabsDirectory), "PopulateShipItems")]
@@ -35,7 +35,7 @@ namespace NANDFixes.Patches
                     child.parent = sleepPos.parent;
                 }
                 
-                sleepPos.Translate(new Vector3(0f, 0.2f, 0.0f), Space.Self);
+                sleepPos.Translate(Vector3.up * 0.2f, Space.Self);
 
                 if (child != null) child.parent = sleepPos;
             }

@@ -140,9 +140,11 @@
     <Compile Include="Patches\CoconutTextPatch.cs" />
     <Compile Include="Patches\DemandFix.cs" />
     <Compile Include="Patches\MapPatch.cs" />
+    <Compile Include="Patches\MapTablePatch.cs" />
     <Compile Include="Patches\MissionPenaltyUIPatch.cs" />
     <Compile Include="Patches\MushroomFix.cs" />
     <Compile Include="Patches\MastButtonFix.cs" />
+    <Compile Include="Patches\PrefabsDirectoryPatches.cs" />
     <Compile Include="Patches\RecoveryPortPatch.cs" />
     <Compile Include="Patches\SaltFix.cs" />
     <Compile Include="Patches\ShipItemPlaceHeightPatch.cs" />
@@ -152,7 +154,7 @@
     <Compile Include="Patches\BottleFillPatches.cs" />
     <Compile Include="Patches\BuyItemUIPatch.cs" />
     <Compile Include="Patches\CrateUIPatch.cs" />
-    <Compile Include="Patches\GRCFountainCollider.cs" />
+    <Compile Include="Patches\GRCPatches.cs" />
     <Compile Include="Patches\MastColPatch.cs" />
     <Compile Include="Patches\DhowPurchasePatch.cs" />
     <Compile Include="Patches\KiciaAltarPatch.cs" />
