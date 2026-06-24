@@ -133,6 +133,7 @@
   <ItemGroup>
     <Compile Include="ConfigurationManagerAttributes.cs" />
     <Compile Include="Patches\AlbacorePatch.cs" />
+    <Compile Include="Patches\AnchorFixes.cs" />
     <Compile Include="Patches\BoatColPatch.cs" />
     <Compile Include="Patches\BoatDamagePatches.cs" />
     <Compile Include="Patches\CleaningPatch.cs" />

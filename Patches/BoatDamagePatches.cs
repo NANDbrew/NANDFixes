@@ -1,6 +1,5 @@
 ﻿using Crest;
 using HarmonyLib;
-using System.Collections;
 using UnityEngine;
 
 namespace NANDFixes.Patches
@@ -29,43 +28,21 @@ namespace NANDFixes.Patches
         }
     }
 
-/*
-    [HarmonyPatch(typeof(BoatDamage), "Impact")]
-    internal static class ImpactDamagePatch
-    {
-        public static bool Prefix()
-        {
-            if (!Plugin.damagePatch2.Value) return true;
-            if (GameState.currentlyLoading || GameState.justStarted)
-            {
-                Debug.Log("NANDfixes: Still loading, no damage");
-                return false;
-            }
-            if (GameState.sleeping && Sleep.timeskipSleep)
-            {
-                Debug.Log("NANDfixes: Impact while sleeping and moored/in inn, no damage");
-                return false;
-            }
-            return true;
-        }
-    }*/
-
     [HarmonyPatch(typeof(BoatHorizon), "UpdateKinematic")]
     internal static class BoatHeightPatch
     {
         private static SampleHeightHelper heightHelper = new SampleHeightHelper();
         internal static bool freshStart = true;
-        public static void Prefix(Rigidbody ___rigidbody, ref bool __state)
+        public static void Prefix(Rigidbody ___rigidbody, BoatPhysicsSwitcher ___physicsSwitcher, ref bool __state)
         {
             if (!Plugin.boatHeightFix.Value) return;
+            if (___physicsSwitcher == null) return;
             __state = ___rigidbody.isKinematic;
         }
 
-        public static void Postfix(BoatHorizon __instance, Rigidbody ___rigidbody, bool __state)
+        public static void Postfix(Rigidbody ___rigidbody, bool __state)
         {
             if (!Plugin.boatHeightFix.Value) return;
-            //if (!(bool)__instance.GetComponent<PurchasableBoat>()) return;
-            //Debug.Log("nfx: boatHeight");
             if (__state && !___rigidbody.isKinematic)
             {
                 //Debug.Log("nfx: boatHeight is doing");
