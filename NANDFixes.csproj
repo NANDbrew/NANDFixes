@@ -162,6 +162,7 @@
     <Compile Include="Patches\SailPatches.cs" />
     <Compile Include="Patches\ShipItemEmbarkPatches.cs" />
     <Compile Include="Patches\ShipItemVelPatch.cs" />
+    <Compile Include="Patches\HotkeyFix.cs" />
     <Compile Include="Patches\SpinFix.cs" />
     <Compile Include="Plugin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
