@@ -19,17 +19,21 @@ namespace NANDFixes.Patches
 
             }
         }
-        [HarmonyPatch(typeof(Anchor))]
+        [HarmonyPatch(typeof(Anchor), "Awake")]
         public static class AnchorPatch2
         {
-            [HarmonyPatch("Awake")]
-            [HarmonyPrefix]
-            public static void Patch2(Anchor __instance)
+            static Transform shiftingWorld;
+            public static void Postfix(Anchor __instance)
             {
                 if (!Plugin.anchorPatches.Value) return;
-                if (__instance.GetComponent<ConfigurableJoint>() is ConfigurableJoint joint)
+                if (__instance.transform.parent == null || (__instance.transform.parent != null && __instance.transform.parent.name != "_shifting world"))
                 {
-                    __instance.transform.parent = joint.connectedBody.transform.GetChild(0);
+                    if (shiftingWorld == null)
+                    {
+                        shiftingWorld = GameObject.Find("_shifting world").transform;
+                    }
+                    __instance.transform.parent = shiftingWorld;
+                    //Debug.Log("AnchorParent for " + __instance.name + " is " + __instance.transform.parent.name);
                 }
             }
         }
