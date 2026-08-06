@@ -17,17 +17,17 @@ namespace NANDFixes.Patches
             // fix coconuts' duplicate look text
             PrefabsDirectory.instance.shipItems[3].description = "";
 
-            if (!Plugin.itemPlaceHeightFix.Value)
+            if (Plugin.itemPlaceHeightFix.Value)
             {
                 __instance.shipItems[70].furniturePlaceHeight = 0.21f;
             }
-            if (!Plugin.mushroomFix.Value)
+            if (Plugin.mushroomFix.Value)
             {
                 FixCollider(PrefabsDirectory.instance.directory[144]);
                 FixCollider(PrefabsDirectory.instance.directory[145]);
             }
 
-            if (!Plugin.invRotationFix.Value)
+            if (Plugin.invRotationFix.Value)
             {
                 for (int i = 311; i < 320; i++)
                 {
