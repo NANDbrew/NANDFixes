@@ -114,13 +114,32 @@ namespace NANDFixes.Patches
                 }
                 if (__instance.GetComponent<CrateInventory>() is CrateInventory crateInventory)
                 {
-                    foreach (var item in crateInventory.containedItems)
-                    {
-                        AccessTools.Method(item.GetType(), "ExitBoat").Invoke(item, null);
-                    }
+                    crateInventory.StartCoroutine(DisembarkContainedItems(crateInventory, __instance, __instance.currentActualBoat));
                 }
 
             }
+
+            private static IEnumerator DisembarkContainedItems(CrateInventory crateInventory, ShipItem shipItem, Transform oldBoat)
+            {
+                yield return new WaitForSeconds(0.2f);
+                if (shipItem.currentActualBoat == oldBoat)
+                {
+                    yield break;
+                }
+                foreach (var item in crateInventory.containedItems)
+                {
+                    if (item.currentActualBoat == oldBoat)
+                    {
+                        AccessTools.Method(item.GetType(), "ExitBoat").Invoke(item, null);
+                    }
+                    else
+                    {
+                        oldBoat.parent.GetComponent<BoatMass>().RemoveItem(item.GetItemRigidbody());
+                    }
+
+                }
+            }
+
             [HarmonyPatch("InsertIntoCargoCarrier")]
             [HarmonyPostfix]
             public static void CarrierPatch(ShipItem __instance)
