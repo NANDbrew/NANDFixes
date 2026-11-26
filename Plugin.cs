@@ -24,13 +24,13 @@ namespace NANDFixes
         internal static ConfigEntry<bool> playerEmbark;
         internal static ConfigEntry<bool> playerEmbarkAggro;
         //internal static ConfigEntry<bool> playerEmbark3;
-        internal static ConfigEntry<bool> velocityFix;
+        //internal static ConfigEntry<bool> velocityFix;
         internal static ConfigEntry<bool> clothFix;
         internal static ConfigEntry<bool> sailBlinkFix;
         internal static ConfigEntry<bool> barrelPatches;
         internal static ConfigEntry<bool> mastColPatch;
         internal static ConfigEntry<bool> buyUIPatch;
-        internal static ConfigEntry<bool> albacoreFix;
+        //internal static ConfigEntry<bool> albacoreFix;
         internal static ConfigEntry<bool> spinFix;
         internal static ConfigEntry<bool> cleaningFix;
         internal static ConfigEntry<bool> craneFix;
@@ -61,7 +61,7 @@ namespace NANDFixes
         {
             Harmony.CreateAndPatchAll(Assembly.GetExecutingAssembly(), PLUGIN_ID);
             instance = this;
-            AssetTools.LoadAssetBundles();
+            //AssetTools.LoadAssetBundles();
 
             stickyFix = Config.Bind("", "StickyFix", true, new ConfigDescription("Fix the infamous \"things getting stuck to other boats\" bug"));
             aggressiveSF = Config.Bind("", "Aggressive StickyFix", false, new ConfigDescription("Should stickyFix prevent items that are stationary or in water from embarking?\nOnly applies when StickyFix is enabled"));
@@ -78,13 +78,13 @@ namespace NANDFixes
             playerEmbark = Config.Bind("", "Player embark fixes", true, new ConfigDescription("Fix player embarking issues (shipyard and/or anchor weirdness)"));
             playerEmbarkAggro = Config.Bind("", "Player boat-to-boat embark fix", false, new ConfigDescription("Fix issues with player embarking between boats"));
             //playerEmbark3 = Config.Bind("", "Player embark fix (aggressive disembark)", false, new ConfigDescription("Fix falling through docks when exiting boat"));
-            velocityFix = Config.Bind("", "Item velocity fix", true, new ConfigDescription("Fix thrown items bouncing back out of boats or flying the wrong way"));
+            //velocityFix = Config.Bind("", "Item velocity fix", true, new ConfigDescription("Fix thrown items bouncing back out of boats or flying the wrong way"));
             clothFix = Config.Bind("", "Sailcloth fix", true, new ConfigDescription("Fix squished/stretched sailcloth when unfurling"));
             barrelPatches = Config.Bind("", "Barrel patches", true, new ConfigDescription("Fix accidentally drinking from barrels"));
             sailBlinkFix = Config.Bind("", "Sail blinking fix", true, new ConfigDescription("Fix junk and junk square sails white blinky bug"));
             mastColPatch = Config.Bind("", "Mast item fix", true, new ConfigDescription("Fix the bug that makes items attached to masts un-targetable (requires restart)"));
             buyUIPatch = Config.Bind("", "Floating scroll fix", true, new ConfigDescription("Fix floating \"sell item\" menu"));
-            albacoreFix = Config.Bind("", "Rotten albacore fix", true, new ConfigDescription("Fix Gold Albacore starting out rotten and being unslicable"));
+            //albacoreFix = Config.Bind("", "Rotten albacore fix", true, new ConfigDescription("Fix Gold Albacore starting out rotten and being unslicable"));
             aoPatch = Config.Bind("", "Ambient Occlusion fog fix", true, new ConfigDescription("Fix ambient occlusion artifacts in dense fog"));
             damagePatch = Config.Bind("", "Boat Damage Graphic fix", true, new ConfigDescription("Fix damage cracks rendering over water\nFix water intake splash when loading a save"));
             anchorPatches = Config.Bind("", "Anchor patches", true, new ConfigDescription("Fix un-owned anchors changing position. Fix Jong anchor starting position"));

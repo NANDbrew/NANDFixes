@@ -8,20 +8,6 @@ using UnityEngine;
 
 namespace NANDFixes.Patches
 {
-    [HarmonyPatch(typeof(ShipyardSailColChecker), "Awake")]
-    internal class SailColPatch
-    {
-        public static void Postfix(Sail ___sail, ref Vector3 ___sailModelOffset)
-        {
-            if (colfixSails.Contains(___sail.prefabIndex))
-            {
-                ___sailModelOffset = new Vector3(0f, 0f, 1.5f);
-            }
-        }
-
-        private static readonly int[] colfixSails = new int[] { 17, 18, 107 }; // junk gaffs
-    }
-
     [HarmonyPatch(typeof(ReefEffectAnimUniversal), "Start")]
     internal static class SailBlinkFix
     {

@@ -30,6 +30,7 @@ namespace NANDFixes.Patches
         {
             if (Plugin.playerEmbark.Value && (GameState.currentShipyard != null || other.GetComponent<Anchor>()))
             {
+                Debug.Log("NANDfixes: prevented trigger");
                 return false;
             }
             if (!Plugin.playerEmbarkAggro.Value) return true;

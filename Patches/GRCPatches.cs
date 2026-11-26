@@ -14,7 +14,7 @@ namespace NANDFixes.Patches
                 Transform clutterContainer = __instance.transform.Find("island 1 A clutter");
                 if (clutterContainer != null)
                 {
-                    clutterContainer.Find("pref_Fountain")?.gameObject.AddComponent<MeshCollider>();
+                    //clutterContainer.Find("pref_Fountain")?.gameObject.AddComponent<MeshCollider>();
                     clutterContainer.Find("pref_Brazier_03_Lit (2)").gameObject.AddComponent<MeshCollider>().convex = true;
                     clutterContainer.Find("pref_Brazier_03_Lit (3)").gameObject.AddComponent<MeshCollider>().convex = true;
                 }
