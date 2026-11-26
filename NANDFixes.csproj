@@ -8,8 +8,7 @@
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <SailwindDir>C:\Program Files (x86)\Steam\steamapps\common\Sailwind</SailwindDir>
     <RestoreAdditionalProjectSources>
-      https://nuget.org;
-      https://bepinex.dev
+      https://nuget.bepinex.dev/v3/index.json
     </RestoreAdditionalProjectSources>
   </PropertyGroup>
   <ItemGroup>
