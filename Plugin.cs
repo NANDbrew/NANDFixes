@@ -50,6 +50,7 @@ namespace NANDFixes
         internal static ConfigEntry<bool> itemPlaceHeightFix;
         internal static ConfigEntry<float> heightFixMax;
         internal static ConfigEntry<float> heightFixMaxPause;
+        internal static ConfigEntry<bool> mooringPatch;
 
         internal static int orderWrapThreshold = 45;
         internal static int threshold = 1000;
@@ -96,7 +97,8 @@ namespace NANDFixes
             boatHeightFix = Config.Bind("", "Boat Height Fix", true, new ConfigDescription("Fix boats loading underwater"));
             itemPlaceHeightFix = Config.Bind("", "Item placement height fixes", true, new ConfigDescription("Fix buckets clipping into surfaces when placed on furniture"));
             heightFixMax = Config.Bind("", "Boat Fix Height (start)", 1f, new ConfigDescription("How far Boat Height Fix will move boats when loading a save", null, new ConfigurationManagerAttributes { IsAdvanced = true }));
-            heightFixMaxPause = Config.Bind("", "Boat Fix Height (pause)", 0.4f, new ConfigDescription("FixHow far Boat Height will move boats when unpausing", null, new ConfigurationManagerAttributes { IsAdvanced = true }));
+            heightFixMaxPause = Config.Bind("", "Boat Fix Height (pause)", 0.4f, new ConfigDescription("How far Boat Height will move boats when unpausing", null, new ConfigurationManagerAttributes { IsAdvanced = true }));
+            mooringPatch = Config.Bind("", "Mooring Rope Fix", true, new ConfigDescription("Fix mooring lines being ungrabbable at max length", null));
 
             aoPatch.SettingChanged += (sender, args) => ToggleAOPatch();
         }
