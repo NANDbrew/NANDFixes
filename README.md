@@ -2,11 +2,8 @@
 
 **Always-on patches**
 - fixes missing world map markers for Fey Valley, Firefly Grotto, Siren Song, Eastwind, Aestra Abbey, Dead Cove, Turtle Island
-- fixes junk gaffs colliding with things that should be below them
-- fixes shipyard issues with the Jong, and any boat that can't be cleaned/can't get dirty
-- fixes water clipping through the Sanbuq
+- fixes shipyard issues with any boat that can't be cleaned/can't get dirty
 - fixes crates being unopenable after losing or selling one
-- adds colliders to Gold Rock City's market fountain
 - fixes Kicia Altar sound effect getting stuck on
 - fixes that weird glowy line that shows up in the distance when the shipyard is active
 
@@ -31,14 +28,10 @@
   - fix gold rock city's shipyard crane colliders.
 - Spin Fix: 
   - keep boats from spinning while the player is in a shipyard.
-- Cleaning Fix: 
-  - workaround for the Jong's shipyard crash.
 - Bed camera adjustment: 
   - Moves the sleep position in certain beds up a bit to fix the camera clipping through.
 - Boat-to-boat embark fix: 
   - Fix for the "falling through the deck when jumping between boats" issue.
-- Item velocity fix: 
-  - Fix thrown items bouncing back out of boats or flying the wrong way.
 - Sailcloth fix: 
   - Fix squished/stretched sailcloth when unfurling.
 - Barrel patches: 
@@ -49,8 +42,6 @@
   - Fix the bug that makes items attached to masts un-targetable (requires restart).
 - Floating scroll fix: 
   - Fix floating "sell item" menu.
-- Rotten albacore fix: 
-  - Fix Gold Albacore starting out rotten and being unslicable.
 - Ambient Occlusion fog fix: 
   - Fix ambient occlusion artifacts in dense fog.
 - Boat Damage Graphic fix: 
@@ -65,3 +56,13 @@
   - Fix the reputation penalty notification.
 - Recovery Fix: 
   - Fix the recovery issue at Dead Cove and Turtle Island.
+- Shipyard Text Wrap:
+  - Wrap text in shipyard ui to prevent overflow
+- Boat Height Fix
+  - Fix boats loading underwater
+  - Boat Fix Height (start): How far Boat Height Fix will move boats when loading a save
+  - Boat Fix Height (pause): How far Boat Height will move boats when unpausing
+- Item placement height fixes
+  - Fix buckets clipping into surfaces when placed on furniture
+- Mooring rope fix:
+  - Fix mooring ropes being impossible to unmoor at max tension
